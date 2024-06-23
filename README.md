@@ -18,6 +18,7 @@ sudo ./ubuntu_desktop_bootstrap/bootstrap.sh
 - check apps
 - perform basic configuration via UI
 - move data from backup
+- perform sensors configuration [readme1](https://github.com/UshakovVasilii/gnome-shell-extension-freon/wiki/FAQ) [readme2](https://wiki.archlinux.org/title/lm_sensors)
 - install manually:
   - zoom
   - pritunl

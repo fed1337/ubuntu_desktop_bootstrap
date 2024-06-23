@@ -113,5 +113,6 @@ cp .gitconfig /home/$USER/
 cp .bash_aliases /home/$USER/
 chown $USER:$USER /home/$USER/.bash_aliases
 chmod 644 /home/$USER/.bash_aliases
+cp sensors-custom.conf /etc/sensors.d/
 
 echo 'Ubuntu Desktop Bootstrap done'
