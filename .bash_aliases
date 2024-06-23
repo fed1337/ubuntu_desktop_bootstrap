@@ -43,7 +43,6 @@ urlencode ()
 
 urldecode ()
 {
-  #: "${*//+/ }"; echo -e "${_//%/\\x}";
   local url_encoded="${1//+/ }"
   printf '%b' "${url_encoded//%/\\x}"
 }

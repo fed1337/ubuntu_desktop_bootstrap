@@ -4,9 +4,9 @@
 ## After OS installation
 1. 
 ```
-wget 
-chmod +x ubuntu_desktop_bootstrap
-sudo ./ubuntu_desktop_bootstrap/bootstrap.sh
+wget https://github.com/fed1337/ubuntu_desktop_bootstrap/archive/refs/tags/v0.2.tar.gz
+tar -xf ubuntu_desktop_bootstrap-0.2.tar.gz
+chmod +x ubuntu_desktop_bootstrap-0.2/bootstrap.sh
 ```
 2. Add .ssh directory with your keys to ubuntu_desktop_bootstrap
 3. Edit USER variable in bootstrap.sh accordingly to the name of your user
