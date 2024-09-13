@@ -16,16 +16,8 @@ snap install --classic kubectl
 snap install --classic kontena-lens
 snap install --classic phpstorm
 
-# wireguird
-wget https://github.com/UnnoTed/wireguird/releases/download/v1.1.0/wireguird_amd64.deb
-dpkg -i ./wireguird_amd64.deb
-
-# kse
-wget https://github.com/kaikramer/keystore-explorer/releases/download/v5.5.3/kse_5.5.3_all.deb
-dpkg -i ./kse_5.5.3_all.deb
-
 # install a bunch of stuff
-apt install libfuse2 git apt-transport-https mesa-utils mc htop vlc curl ca-certificates gnome-tweaks samba smbclient p7zip p7zip-rar rar unrar ffmpeg gnome-shell-extension-ubuntu-dock ubuntu-drivers-common xz-utils bleachbit stacer meld openvpn jq synaptic ubuntu-restricted-extras redis-tools lm-sensors gnome-shell-extension-manager gnome-shell-extensions smartmontools golang-go ipmitool build-essential gcc make perl cmake gnupg virtualbox-qt variety wireguard-tools google-chrome-stable libssl-dev python3-pip dconf-editor software-properties-common python3-argcomplete -y
+apt install libfuse2 git apt-transport-https mesa-utils mc htop vlc curl ca-certificates gnome-tweaks samba smbclient p7zip p7zip-rar rar unrar ffmpeg gnome-shell-extension-ubuntu-dock ubuntu-drivers-common xz-utils bleachbit stacer meld openvpn jq synaptic ubuntu-restricted-extras redis-tools lm-sensors gnome-shell-extension-manager gnome-shell-extensions smartmontools golang-go ipmitool build-essential gcc make perl cmake gnupg virtualbox-qt variety google-chrome-stable libssl-dev python3-pip dconf-editor software-properties-common python3-argcomplete -y
 
 # symfony-cli
 curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | bash
@@ -56,7 +48,38 @@ apt install google-cloud-cli google-cloud-cli-gke-gcloud-auth-plugin
 
 # ansible
 add-apt-repository --yes --update ppa:ansible/ansible
-apt install ansible
+apt install ansible ansible-lint
+
+# wireguard + gui
+apt install wireguard wireguard-tools
+wget https://github.com/UnnoTed/wireguird/releases/download/v1.1.0/wireguird_amd64.deb
+apt install ./wireguird_amd64.deb
+
+# kse
+wget https://github.com/kaikramer/keystore-explorer/releases/download/v5.5.3/kse_5.5.3_all.deb
+apt install ./kse_5.5.3_all.deb
+
+# typora
+wget -qO - https://typora.io/linux/public-key.asc | sudo tee /etc/apt/trusted.gpg.d/typora.asc
+add-apt-repository 'deb https://typora.io/linux ./'
+apt update
+apt install install typora
+
+# zoom
+wget https://zoom.us/client/6.1.11.1545/zoom_amd64.deb
+apt install ./zoom_amd64.deb
+
+# pritunl
+touch /etc/apt/sources.list.d/pritunl.list
+echo "deb https://repo.pritunl.com/stable/apt noble main\n" > /etc/apt/sources.list.d/pritunl.list
+gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 7568D9BB55FF9E5287D586017AE645C0CF8E292A
+gpg --armor --export 7568D9BB55FF9E5287D586017AE645C0CF8E292A | sudo tee /etc/apt/trusted.gpg.d/pritunl.asc
+apt update
+apt install pritunl-client-electron
+
+# nekoray
+wget https://github.com/MatsuriDayo/nekoray/releases/download/3.26/nekoray-3.26-2023-12-09-debian-x64.deb
+apt install ./nekoray-3.26-2023-12-09-debian-x64.deb
 
 # crap cleaning
 apt remove gnome-text-editor
@@ -75,14 +98,16 @@ rm /home/$USER/snap/skype/current/.config/autostart/skypeforlinux.desktop
 # don't remember & hide recent files
 gsettings set org.gnome.desktop.privacy remember-recent-files false
 
-# hide starred tab
-mkdir /home/$USER/.config/nautilus/ui
-gresource extract /bin/nautilus /org/gnome/nautilus/ui/nautilus-window.ui >~/.config/nautilus/ui/nautilus-window.ui
-export G_RESOURCE_OVERLAYS="/org/gnome/nautilus/ui=home/$USER/.config/nautilus/ui"
-mkdir -p /home/$USER/.config/systemd/user/dbus.service.d/
-touch /home/$USER/.config/systemd/user/dbus.service.d/environment.conf
-echo -e "[Service]
-#Environment="G_RESOURCE_OVERLAYS=/org/gnome/nautilus/ui=/home/$USER/.config/nautilus/ui"" >/home/$USER/.config/systemd/user/dbus.service.d/environment.conf
+# & hide starred tab & hide "star" column (doesnt work for now)
+# https://askubuntu.com/questions/1194319/can-the-starred-folder-in-the-left-pane-of-files-nautilus-be-removed
+# https://discourse.gnome.org/t/nautilus-hide-remove-star-column/18343/11
+#mkdir -p /home/$USER/.config/nautilus/ui
+#gresource extract /bin/nautilus /org/gnome/nautilus/ui/nautilus-window.ui > home/$USER/.config/nautilus/ui/nautilus-window.ui
+#export G_RESOURCE_OVERLAYS="/org/gnome/nautilus/ui=home/$USER/.config/nautilus/ui"
+#mkdir -p /home/$USER/.config/systemd/user/dbus.service.d/
+#touch /home/$USER/.config/systemd/user/dbus.service.d/environment.conf
+#echo -e "[Service]
+##Environment="G_RESOURCE_OVERLAYS=/org/gnome/nautilus/ui=/home/$USER/.config/nautilus/ui"" >/home/$USER/.config/systemd/user/dbus.service.d/environment.conf
 
 # copy ssh keys
 cp -rp .ssh /home/$USER/.ssh
