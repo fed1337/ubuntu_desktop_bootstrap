@@ -1,5 +1,7 @@
 # useful
-alias ll="ls -alFh"
+alias ll="ls -alCFh"
+alias ls="ls -lCF"
+alias c="clear"
 alias h="history"
 alias hg="history|grep"
 alias extip="curl eth0.me"
@@ -10,6 +12,7 @@ alias bc="bc -l"
 alias mount="mount |column -t"
 alias spoofdpi="~/.spoof-dpi/bin/spoof-dpi"
 alias ovpn="sudo openvpn --script-security 2 --config"
+alias mkdir="mkdir -pv"
 
 
 # confirmation #
@@ -32,6 +35,7 @@ alias vdir="vdir --color=always"
 alias df="df -h"
 alias du="du -h"
 alias rsync="rsync -h"
+alias systemctl="systemctl --no-pager --full"
 
 
 # functions
