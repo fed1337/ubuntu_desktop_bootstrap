@@ -8,7 +8,7 @@ apt update -y
 apt upgrade -y
 
 # installing snaps
-snap install discord insomnia minuet mumble postman qalculate slack teams-for-linux telegram-desktop nmap keepassxc smplayer drawio
+snap install discord insomnia minuet mumble postman qalculate slack telegram-desktop keepassxc smplayer
 snap install --classic sublime-merge
 snap install --classic sublime-text
 snap install --classic kubectx
@@ -16,7 +16,7 @@ snap install --classic kubectl
 snap install --classic kontena-lens
 
 # install a bunch of stuff
-apt install libfuse2 git apt-transport-https mesa-utils mc htop vlc curl ca-certificates gnome-tweaks samba smbclient 7zip 7zip-rar 7zip-standalone ffmpeg gnome-shell-extension-ubuntu-dock ubuntu-drivers-common xz-utils bleachbit stacer meld openvpn jq synaptic ubuntu-restricted-extras redis-tools lm-sensors gnome-shell-extension-manager gnome-shell-extensions smartmontools golang-go ipmitool build-essential gcc make perl cmake gnupg virtualbox-qt variety google-chrome-stable libssl-dev python3-pip dconf-editor software-properties-common python3-argcomplete dupeguru -y
+apt install libfuse2 git apt-transport-https mesa-utils mc htop vlc curl ca-certificates gnome-tweaks samba smbclient 7zip 7zip-rar 7zip-standalone ffmpeg gnome-shell-extension-ubuntu-dock ubuntu-drivers-common xz-utils bleachbit meld openvpn jq synaptic ubuntu-restricted-extras redis-tools lm-sensors gnome-shell-extension-manager gnome-shell-extensions smartmontools golang-go ipmitool build-essential gcc make perl cmake gnupg virtualbox-qt variety google-chrome-stable libssl-dev python3-pip dconf-editor software-properties-common python3-argcomplete dupeguru djview4 foliate nmap pdfarranger -y
 
 # symfony-cli
 curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | bash
@@ -27,8 +27,8 @@ apt install symfony-cli -y
 curl -fsSL https://raw.githubusercontent.com/nagygergo/jetbrains-toolbox-install/master/jetbrains-toolbox.sh | bash
 
 # install peazip GUI archive manager
-wget https://github.com/peazip/PeaZip/releases/download/10.0.0/peazip_10.0.0.LINUX.GTK2-1_amd64.deb
-apt install ./peazip_10.0.0.LINUX.GTK2-1_amd64.deb
+wget https://github.com/peazip/PeaZip/releases/download/10.3.0/peazip_10.3.0.LINUX.GTK2-1_amd64.deb
+apt install ./peazip_10.3.0.LINUX.GTK2-1_amd64.deb
 
 # jetbrains mono font
 wget https://download.jetbrains.com/fonts/JetBrainsMono-2.304.zip
@@ -70,21 +70,16 @@ apt install install typora
 wget https://zoom.us/client/6.1.11.1545/zoom_amd64.deb
 apt install ./zoom_amd64.deb
 
-# pritunl
-#touch /etc/apt/sources.list.d/pritunl.list
-#echo "deb https://repo.pritunl.com/stable/apt noble main\n" > /etc/apt/sources.list.d/pritunl.list
-#gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 7568D9BB55FF9E5287D586017AE645C0CF8E292A
-#gpg --armor --export 7568D9BB55FF9E5287D586017AE645C0CF8E292A | sudo tee /etc/apt/trusted.gpg.d/pritunl.asc
-#apt update
-#apt install pritunl-client-electron
+# rustdesk
+wget https://github.com/rustdesk/rustdesk/releases/download/1.3.8/rustdesk-1.3.8-x86_64.deb
+apt install ./rustdesk-1.3.8-x86_64.deb
 
 # nekoray
-wget https://github.com/MatsuriDayo/nekoray/releases/download/3.26/nekoray-3.26-2023-12-09-debian-x64.deb
-apt install ./nekoray-3.26-2023-12-09-debian-x64.deb
+wget https://github.com/MatsuriDayo/nekoray/releases/download/4.0.1/nekoray-4.0.1-2024-12-12-debian-x64.deb
+apt install ./nekoray-4.0.1-2024-12-12-debian-x64.deb
 
 # nvm
-cd ~/
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
 
 # disable tracker 3
 su -u $USER 'systemctl --user mask tracker-extract-3.service tracker-miner-fs-3.service tracker-miner-rss-3.service tracker-writeback-3.service tracker-xdg-portal-3.service tracker-miner-fs-control-3.service'
@@ -112,16 +107,11 @@ rm -f *.deb
 # don't remember & hide recent files
 gsettings set org.gnome.desktop.privacy remember-recent-files false
 
-# & hide starred tab & hide "star" column (doesnt work for now)
-# https://askubuntu.com/questions/1194319/can-the-starred-folder-in-the-left-pane-of-files-nautilus-be-removed
-# https://discourse.gnome.org/t/nautilus-hide-remove-star-column/18343/11
-#mkdir -p /home/$USER/.config/nautilus/ui
-#gresource extract /bin/nautilus /org/gnome/nautilus/ui/nautilus-window.ui > home/$USER/.config/nautilus/ui/nautilus-window.ui
-#export G_RESOURCE_OVERLAYS="/org/gnome/nautilus/ui=home/$USER/.config/nautilus/ui"
-#mkdir -p /home/$USER/.config/systemd/user/dbus.service.d/
-#touch /home/$USER/.config/systemd/user/dbus.service.d/environment.conf
-#echo -e "[Service]
-##Environment="G_RESOURCE_OVERLAYS=/org/gnome/nautilus/ui=/home/$USER/.config/nautilus/ui"" >/home/$USER/.config/systemd/user/dbus.service.d/environment.conf
+# TODO
+# - Sublime config
+# - Gnome tweak, extensions, settings, dconf
+# - Edit default bookmarks in nautilus (have desktop, delete starred)
+# - Delete starred column in files view
 
 # copy ssh keys
 cp -rp .ssh /home/$USER/.ssh
@@ -138,5 +128,7 @@ cp sensors-custom.conf /etc/sensors.d/
 
 echo -e "Ubuntu Desktop Bootstrap done
 IMPORTANT MANUAL STEPS:
-1. setup connection to GCP: gcloud init
+1. setup connection to GCP
+1.1 gcloud init
+1.2 gcloud auth login
 2. active ansible autocompletion: activate-global-python-argcomplete --user"

@@ -16,13 +16,13 @@ chmod +x ubuntu_desktop_bootstrap-0.2/bootstrap.sh
 
 ## After script execution
 
-- Do what the message in the terminal tells you to do
 - Reboot
 - Check that apps are installed
+- Do what the message in the terminal tells you to do
 - Perform basic configuration via UI
-- move data from backup
+- Move data from backup
 - Perform sensors
-  configuration [readme1](https://github.com/UshakovVasilii/gnome-shell-extension-freon/wiki/FAQ) [readme2](https://wiki.archlinux.org/title/lm_sensors)
+configuration [readme1](https://github.com/UshakovVasilii/gnome-shell-extension-freon/wiki/FAQ) [readme2](https://wiki.archlinux.org/title/lm_sensors)
 - check disk issues
 - check dmesg errors with `sudo dmesg --level=emerg,alert,crit,err,warn,notice,info`
 
