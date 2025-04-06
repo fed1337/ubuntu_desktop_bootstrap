@@ -1,6 +1,6 @@
 # useful
-alias ll="ls -alCFh"
-alias ls="ls -lCF"
+alias ll="ls -alCh"
+alias ls="ls -l"
 alias c="clear"
 alias h="history"
 alias hg="history|grep"
@@ -12,6 +12,8 @@ alias mount="mount |column -t"
 alias spoofdpi="~/.spoof-dpi/bin/spoof-dpi"
 alias ovpn="sudo openvpn --script-security 2 --config"
 alias mkdir="mkdir -pv"
+alias setproxy="http_proxy='http://127.0.0.1:2080' && export http_proxy"
+alias unsetproxy="http_proxy='' && export http_proxy"
 
 # confirmation #
 alias mv="mv -i"

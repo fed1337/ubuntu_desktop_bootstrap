@@ -92,6 +92,11 @@ apt-mark hold tracker
 apt-mark hold tracker-extract
 apt-mark hold tracker-miner-fs
 
+# PHP 8.4
+add-apt-repository ppa:ondrej/php
+apt update -y
+apt install php8.4
+
 # try to repair stuff that may be broken
 apt --fix-broken install -y
 apt update --fix-missing -y
@@ -107,12 +112,6 @@ rm -f *.deb
 # don't remember & hide recent files
 gsettings set org.gnome.desktop.privacy remember-recent-files false
 
-# TODO
-# - Sublime config
-# - Gnome tweak, extensions, settings, dconf
-# - Edit default bookmarks in nautilus (have desktop, delete starred)
-# - Delete starred column in files view
-
 # copy ssh keys
 cp -rp .ssh /home/$USER/.ssh
 chmod 0600 /home/$USER/.ssh/id*
@@ -125,10 +124,14 @@ cp .bash_aliases /home/$USER/
 chown $USER:$USER /home/$USER/.bash_aliases
 chmod 644 /home/$USER/.bash_aliases
 cp sensors-custom.conf /etc/sensors.d/
+cp -rp sublime-text /home/$USER/.config/
 
 echo -e "Ubuntu Desktop Bootstrap done
 IMPORTANT MANUAL STEPS:
 1. setup connection to GCP
 1.1 gcloud init
 1.2 gcloud auth login
-2. active ansible autocompletion: activate-global-python-argcomplete --user"
+2. active ansible autocompletion: activate-global-python-argcomplete --user
+3. Import JetBrains IDE settings by opening IDE File->Manage IDE Settings->Import Settings
+4. Use Java installer
+5. Use Composer installer and move the binary to /usr/local/bin/composer"

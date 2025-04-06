@@ -11,7 +11,7 @@ fi
 help() {
   echo -e "Usage: $0 <option> <object> <priority>
 \t <option> can be one of: install, uninstall, config
-\t <object> is a path to an java folder
+\t <object> is a path to a java folder
 \t <priority> - an integer number defining the priority of a java binaries installing, should be set if the <option> is install, defaults to 100"
   exit 1
 }
