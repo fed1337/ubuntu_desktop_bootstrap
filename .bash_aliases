@@ -28,6 +28,7 @@ alias pcregrep="pcregrep --color=always"
 alias watch="watch --color"
 alias diff="diff --color=always"
 alias vdir="vdir --color=always"
+alias grep='grep --color=auto'
 
 # human readable
 alias df="df -h"

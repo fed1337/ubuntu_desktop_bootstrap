@@ -16,7 +16,7 @@ snap install --classic kubectl
 snap install --classic kontena-lens
 
 # install a bunch of stuff
-apt install libfuse2 git apt-transport-https mesa-utils mc htop vlc curl ca-certificates gnome-tweaks samba smbclient 7zip 7zip-rar 7zip-standalone ffmpeg gnome-shell-extension-ubuntu-dock ubuntu-drivers-common xz-utils bleachbit meld openvpn jq synaptic ubuntu-restricted-extras redis-tools lm-sensors gnome-shell-extension-manager gnome-shell-extensions smartmontools golang-go ipmitool build-essential gcc make perl cmake gnupg virtualbox-qt variety google-chrome-stable libssl-dev python3-pip dconf-editor software-properties-common python3-argcomplete dupeguru djview4 foliate nmap pdfarranger -y
+apt install libfuse2 git apt-transport-https mesa-utils mc htop vlc curl ca-certificates gnome-tweaks samba smbclient 7zip 7zip-rar 7zip-standalone ffmpeg gnome-shell-extension-ubuntu-dock ubuntu-drivers-common xz-utils bleachbit meld openvpn jq synaptic ubuntu-restricted-extras redis-tools lm-sensors gnome-shell-extension-manager gnome-shell-extensions smartmontools golang-go ipmitool build-essential gcc make perl cmake gnupg virtualbox-qt variety google-chrome-stable libssl-dev python3-pip dconf-editor software-properties-common python3-argcomplete dupeguru djview4 foliate nmap pdfarranger nmap zenmap -y
 
 # symfony-cli
 curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | bash
@@ -118,13 +118,13 @@ chmod 0600 /home/$USER/.ssh/id*
 ssh-add
 
 # copy configs
-cp variety.conf /home/$USER/.config/variety/
+cp configs/variety.conf /home/$USER/.config/variety/
 cp .gitconfig /home/$USER/
 cp .bash_aliases /home/$USER/
 chown $USER:$USER /home/$USER/.bash_aliases
 chmod 644 /home/$USER/.bash_aliases
-cp sensors-custom.conf /etc/sensors.d/
-cp -rp sublime-text /home/$USER/.config/
+cp configs/sensors-custom.conf /etc/sensors.d/
+cp -rp configs/sublime-text /home/$USER/.config/
 
 echo -e "Ubuntu Desktop Bootstrap done
 IMPORTANT MANUAL STEPS:
@@ -134,4 +134,5 @@ IMPORTANT MANUAL STEPS:
 2. active ansible autocompletion: activate-global-python-argcomplete --user
 3. Import JetBrains IDE settings by opening IDE File->Manage IDE Settings->Import Settings
 4. Use Java installer
-5. Use Composer installer and move the binary to /usr/local/bin/composer"
+5. Use Composer installer and move the binary to /usr/local/bin/composer
+6. Install docker using playbook"
