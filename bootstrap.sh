@@ -92,10 +92,10 @@ apt-mark hold tracker
 apt-mark hold tracker-extract
 apt-mark hold tracker-miner-fs
 
-# PHP 8.4
+# PHP 8.4 suitable for Symfony
 add-apt-repository ppa:ondrej/php
 apt update -y
-apt install php8.4
+apt install php8.4-intl php8.4-mbstring php8.4-mysql php8.4-xml
 
 # try to repair stuff that may be broken
 apt --fix-broken install -y
