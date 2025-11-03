@@ -28,4 +28,4 @@ configuration [readme1](https://github.com/UshakovVasilii/gnome-shell-extension-
 
 ## Java installation
 
-The script must be run as root. Run the script without options in order to see examples of usage.
+The script must be run as root. Run the script without options to see examples of usage.
