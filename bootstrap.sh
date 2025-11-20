@@ -16,7 +16,7 @@ snap install --classic kubectl
 snap install --classic kontena-lens
 
 # install a bunch of stuff
-apt install libfuse2 git apt-transport-https mesa-utils mc htop vlc curl ca-certificates gnome-tweaks samba smbclient 7zip 7zip-rar 7zip-standalone ffmpeg gnome-shell-extension-ubuntu-dock ubuntu-drivers-common xz-utils bleachbit meld openvpn jq synaptic ubuntu-restricted-extras redis-tools lm-sensors gnome-shell-extension-manager gnome-shell-extensions smartmontools golang-go ipmitool build-essential gcc make perl cmake gnupg virtualbox-qt variety google-chrome-stable libssl-dev python3-pip dconf-editor software-properties-common python3-argcomplete dupeguru djview4 foliate nmap pdfarranger nmap zenmap libnss3-tools -y
+apt install libfuse2 git apt-transport-https mesa-utils mc htop vlc curl ca-certificates gnome-tweaks samba smbclient 7zip 7zip-rar 7zip-standalone ffmpeg gnome-shell-extension-ubuntu-dock ubuntu-drivers-common xz-utils bleachbit meld openvpn jq synaptic ubuntu-restricted-extras redis-tools lm-sensors gnome-shell-extension-manager gnome-shell-extensions smartmontools golang-go ipmitool build-essential gcc make perl cmake gnupg virtualbox-qt variety google-chrome-stable libssl-dev python3-pip dconf-editor software-properties-common python3-argcomplete dupeguru djview4 foliate nmap pdfarranger nmap zenmap libnss3-tools pritunl-client-electron -y
 
 # symfony-cli
 curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | bash
@@ -80,6 +80,11 @@ apt install ./nekoray-4.0.1-2024-12-12-debian-x64.deb
 
 # nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
+# TODO: automate installation of needed versions and choose default
+#  may be good idea to symlink to default tool path after some tools are installed
+#feds@hp:~$ which node >/dev/null && sudo ln -sf "$(which node)" /usr/local/bin/node
+#feds@hp:~$ which npx >/dev/null && sudo ln -sf "$(which npx)" /usr/local/bin/npx
+
 
 # disable tracker 3
 su -u $USER 'systemctl --user mask tracker-extract-3.service tracker-miner-fs-3.service tracker-miner-rss-3.service tracker-writeback-3.service tracker-xdg-portal-3.service tracker-miner-fs-control-3.service'
@@ -124,7 +129,7 @@ cp .bash_aliases /home/$USER/
 chown $USER:$USER /home/$USER/.bash_aliases
 chmod 644 /home/$USER/.bash_aliases
 cp configs/sensors-custom.conf /etc/sensors.d/
-cp -rp configs/sublime-text /home/$USER/.config/
+#cp -rp configs/sublime-text /home/$USER/.config/
 
 echo -e "Ubuntu Desktop Bootstrap done
 IMPORTANT MANUAL STEPS:
