@@ -13,10 +13,10 @@ snap install --classic sublime-merge
 snap install --classic sublime-text
 snap install --classic kubectx
 snap install --classic kubectl
-snap install --classic kontena-lens
 
 # install a bunch of stuff
-apt install libfuse2 git apt-transport-https mesa-utils mc htop vlc curl ca-certificates gnome-tweaks samba smbclient 7zip 7zip-rar 7zip-standalone ffmpeg gnome-shell-extension-ubuntu-dock ubuntu-drivers-common xz-utils bleachbit meld openvpn jq synaptic ubuntu-restricted-extras redis-tools lm-sensors gnome-shell-extension-manager gnome-shell-extensions smartmontools golang-go ipmitool build-essential gcc make perl cmake gnupg virtualbox-qt variety google-chrome-stable libssl-dev python3-pip dconf-editor software-properties-common python3-argcomplete dupeguru djview4 foliate nmap pdfarranger nmap zenmap libnss3-tools pritunl-client-electron -y
+# TODO: add lens here
+apt install libfuse2 git apt-transport-https mesa-utils mc htop vlc curl ca-certificates gnome-tweaks samba smbclient 7zip 7zip-rar 7zip-standalone ffmpeg gnome-shell-extension-ubuntu-dock ubuntu-drivers-common xz-utils bleachbit meld openvpn jq synaptic ubuntu-restricted-extras redis-tools lm-sensors gnome-shell-extension-manager gnome-shell-extensions smartmontools golang-go ipmitool build-essential gcc make perl cmake gnupg virtualbox-qt variety google-chrome-stable libssl-dev python3-pip python3-argcomplete pipx dconf-editor software-properties-common dupeguru djview4 foliate nmap pdfarranger nmap zenmap libnss3-tools pritunl-client-electron strawberry xchm -y
 
 # symfony-cli
 curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | bash
@@ -46,10 +46,6 @@ curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | gpg --dearmor -o /u
 echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
 apt update
 apt install google-cloud-cli google-cloud-cli-gke-gcloud-auth-plugin
-
-# ansible
-add-apt-repository --yes --update ppa:ansible/ansible
-apt install ansible ansible-lint
 
 # wireguard + gui
 apt install wireguard wireguard-tools
@@ -85,6 +81,11 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
 #feds@hp:~$ which node >/dev/null && sudo ln -sf "$(which node)" /usr/local/bin/node
 #feds@hp:~$ which npx >/dev/null && sudo ln -sf "$(which npx)" /usr/local/bin/npx
 
+# ansible
+pipx install --include-deps ansible
+pipx inject --include-apps ansible argcomplete
+pipx install ansible-lint
+sudo -u $USER -- activate-global-python-argcomplete --user
 
 # disable tracker 3
 su -u $USER 'systemctl --user mask tracker-extract-3.service tracker-miner-fs-3.service tracker-miner-rss-3.service tracker-writeback-3.service tracker-xdg-portal-3.service tracker-miner-fs-control-3.service'
@@ -114,6 +115,8 @@ apt remove
 apt clean
 rm -f *.deb
 
+# TODO: full gnome setup with extensions and configuration, delete not used programs
+
 # don't remember & hide recent files
 gsettings set org.gnome.desktop.privacy remember-recent-files false
 
@@ -136,8 +139,6 @@ IMPORTANT MANUAL STEPS:
 1. setup connection to GCP
 1.1 gcloud init
 1.2 gcloud auth login
-2. active ansible autocompletion: activate-global-python-argcomplete --user
-3. Import JetBrains IDE settings by opening IDE File->Manage IDE Settings->Import Settings
-4. Use Java installer
-5. Use Composer installer and move the binary to /usr/local/bin/composer
-6. Install docker using playbook"
+2. Use Java installer
+3. Use Composer installer and move the binary to /usr/local/bin/composer
+4. Install docker using playbook"
