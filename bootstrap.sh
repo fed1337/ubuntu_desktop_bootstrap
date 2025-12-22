@@ -109,10 +109,8 @@ apt update --fix-missing -y
 
 # crap cleaning
 apt remove gnome-text-editor
-apt autoclean -y
-apt autoremove -y
-apt remove
 apt clean
+apt autoremove
 rm -f *.deb
 
 # TODO: full gnome setup with extensions and configuration, delete not used programs
