@@ -92,10 +92,11 @@ sudo -u "$USER" bash -c 'pipx install --include-deps ansible'
 sudo -u "$USER" bash -c 'pipx inject --include-apps ansible argcomplete'
 sudo -u "$USER" bash -c 'pipx install ansible-lint'
 sudo -u "$USER" -- activate-global-python-argcomplete --user
+sudo -u "$USER" bash -c 'pipx ensurepath'
 
 # disable tracker 3
+# run tracker3 reset -s -r -- to save some space if the system has been running for some time
 sudo -u "$USER" bash -c 'systemctl --user mask tracker-extract-3.service tracker-miner-fs-3.service tracker-miner-rss-3.service tracker-writeback-3.service tracker-xdg-portal-3.service tracker-miner-fs-control-3.service'
-sudo -u "$USER" bash -c 'tracker3 reset -s -r'
 sudo -u "$USER" bash -c 'systemctl daemon-reload'
 chmod -x /usr/libexec/tracker-*
 apt-mark hold tracker
@@ -122,12 +123,4 @@ cp configs/sensors-custom.conf /etc/sensors.d/
 
 echo -e "Ubuntu Desktop Bootstrap done
 IMPORTANT MANUAL STEPS:
-1. setup connection to GCP
-1.1 gcloud init
-1.2 gcloud auth login
-2. Use Gnome setup script
-3. Use Composer installer and move the binary to /usr/local/bin/composer
-4. Use Nodejs installer
-5. Use virtualbox installer
-6. Use Java installer
-7. Install docker using playbook"
+"
