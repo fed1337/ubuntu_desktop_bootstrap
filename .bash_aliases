@@ -21,8 +21,8 @@ alias rsync="rsync -h"
 alias systemctl="systemctl --no-pager --full"
 
 # cd
-alias .="cd .."
-alias ..="cd ../.."
+alias cd1="cd .."
+alias cd2="cd ../.."
 
 # package management
 alias update="sudo apt update && sudo apt upgrade"
