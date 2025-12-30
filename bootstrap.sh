@@ -18,7 +18,7 @@ snap install --classic kubectx
 snap install --classic kubectl
 
 # install a bunch of stuff
-apt install libfuse2 git apt-transport-https mesa-utils mc htop vlc curl ca-certificates gnome-tweaks samba smbclient p7zip-full ffmpeg gnome-shell-extension-ubuntu-dock ubuntu-drivers-common xz-utils bleachbit meld openvpn jq synaptic ubuntu-restricted-extras redis-tools lm-sensors gnome-shell-extension-manager gnome-shell-extensions smartmontools golang-go ipmitool build-essential gcc make perl cmake gnupg virtualbox-qt variety libssl-dev python3-pip python3-argcomplete pipx dconf-editor software-properties-common dupeguru djview4 foliate nmap pdfarranger nmap zenmap libnss3-tools strawberry xchm virtualbox-ext-pack virtualbox-guest-additions-iso virtualbox-guest-utils virtualbox-qt -y
+apt install libfuse2 git apt-transport-https mesa-utils mc htop vlc curl ca-certificates gnome-tweaks samba smbclient p7zip-full ffmpeg gnome-shell-extension-ubuntu-dock ubuntu-drivers-common xz-utils bleachbit meld openvpn jq ubuntu-restricted-extras redis-tools lm-sensors gnome-shell-extension-manager gnome-shell-extensions golang-go ipmitool build-essential gcc make perl cmake gnupg variety libssl-dev python3-pip python3-argcomplete pipx dconf-editor software-properties-common dupeguru djview4 foliate nmap pdfarranger nmap zenmap libnss3-tools strawberry xchm virtualbox virtualbox-ext-pack virtualbox-guest-additions-iso virtualbox-guest-utils -y
 
 # java stub package
 # equivs-build fake-java-provider
@@ -37,7 +37,7 @@ apt install php8.4-curl php8.4-intl php8.4-mbstring php8.4-mysql php8.4-xdebug p
 wget -qO- https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh | bash
 apt update
 apt install symfony-cli -y
-su -u $USER -c "symfony completion bash | sudo tee /etc/bash_completion.d/symfony"
+sudo -u $USER symfony completion bash | sudo tee /etc/bash_completion.d/symfony
 
 # jetbrains toolbox
 wget -qO- https://raw.githubusercontent.com/nagygergo/jetbrains-toolbox-install/master/jetbrains-toolbox.sh | bash
