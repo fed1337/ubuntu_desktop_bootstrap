@@ -57,6 +57,7 @@ rm -r JetBrainsMono-2.304/
 wget -qO- https://raw.githubusercontent.com/xvzc/SpoofDPI/main/install.sh | bash -s linux
 mkdir -p /home/$USER/.spoof-dpi/bin
 ln -s /usr/local/bin/spoofdpi /home/$USER/.spoof-dpi/bin/spoof-dpi
+rm install.sh
 
 # gcloud
 wget -qO- https://packages.cloud.google.com/apt/doc/apt-key.gpg | gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg
@@ -80,6 +81,28 @@ apt install ./rustdesk-1.4.4-x86_64.deb -y
 # nekoray
 wget https://github.com/MatsuriDayo/nekoray/releases/download/4.0.1/nekoray-4.0.1-2024-12-12-debian-x64.deb
 apt install ./nekoray-4.0.1-2024-12-12-debian-x64.deb -y
+
+# docker
+install -m 0755 -d /etc/apt/keyrings
+wget -qO- https://download.docker.com/linux/ubuntu/gpg
+mv ./gpg /etc/apt/keyrings/docker.asc
+chmod a+r /etc/apt/keyrings/docker.asc
+tee /etc/apt/sources.list.d/docker.sources <<EOF
+Types: deb
+URIs: https://download.docker.com/linux/ubuntu
+Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
+Components: stable
+Signed-By: /etc/apt/keyrings/docker.asc
+EOF
+apt update
+apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-ce-rootless-extras
+groupadd docker
+usermod -aG docker "$USER"
+
+# docker scout
+sudo -u "$USER" bash -c 'wget -qO- https://raw.githubusercontent.com/docker/scout-cli/main/install.sh'
+sudo -u "$USER" bash -c 'sh install.sh'
+sudo -u "$USER" bash -c  'rm install.sh'
 
 # lens
 wget -qO- https://downloads.k8slens.dev/keys/gpg | gpg --dearmor | tee /usr/share/keyrings/lens-archive-keyring.gpg >/dev/null
