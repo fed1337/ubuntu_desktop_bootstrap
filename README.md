@@ -30,3 +30,13 @@ Run it as user `./composer_installer.sh`
 ## NVM & nodejs installation
 
 Run it as user `./nodejs_installer.sh`
+
+## Virtual box installation
+Run as root `sudo ./virtualbox_installer.sh`
+If VMs can't run due to
+```
+VirtualBox can't operate in VMX root mode.
+Please disable the KVM kernel extension, recompile your kernel and reboot.
+(VERR_VMX_IN_VMX_ROOT_MODE).
+```
+Run `sudo modprobe -r kvm_intel`
