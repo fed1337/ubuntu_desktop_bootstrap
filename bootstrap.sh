@@ -84,8 +84,7 @@ apt install ./nekoray-4.0.1-2024-12-12-debian-x64.deb -y
 
 # docker
 install -m 0755 -d /etc/apt/keyrings
-wget -qO- https://download.docker.com/linux/ubuntu/gpg
-mv gpg /etc/apt/keyrings/docker.asc
+wget -qO- https://download.docker.com/linux/ubuntu/gpg > /etc/apt/keyrings/docker.asc
 chmod a+r /etc/apt/keyrings/docker.asc
 echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu   noble stable" > /etc/apt/sources.list.d/docker.list
 apt update
