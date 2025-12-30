@@ -31,8 +31,7 @@ Run it as user `./composer_installer.sh`
 
 Run it as user `./nodejs_installer.sh`
 
-## Virtual box installation
-Run as root `sudo ./virtualbox_installer.sh`
+## Virtual box
 If VMs can't run due to
 ```
 VirtualBox can't operate in VMX root mode.

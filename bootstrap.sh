@@ -2,7 +2,9 @@
 
 set -x
 
-USER=feds
+USER="feds"
+ARCH="$(dpkg --print-architecture)"
+CODENAME="$(lsb_release -sc)"
 
 # updating system
 apt update
@@ -16,7 +18,7 @@ snap install --classic kubectx
 snap install --classic kubectl
 
 # install a bunch of stuff
-apt install libfuse2 git apt-transport-https mesa-utils mc htop vlc curl ca-certificates gnome-tweaks samba smbclient p7zip-full ffmpeg gnome-shell-extension-ubuntu-dock ubuntu-drivers-common xz-utils bleachbit meld openvpn jq synaptic ubuntu-restricted-extras redis-tools lm-sensors gnome-shell-extension-manager gnome-shell-extensions smartmontools golang-go ipmitool build-essential gcc make perl cmake gnupg virtualbox-qt variety google-chrome-stable libssl-dev python3-pip python3-argcomplete pipx dconf-editor software-properties-common dupeguru djview4 foliate nmap pdfarranger nmap zenmap libnss3-tools strawberry xchm -y
+apt install libfuse2 git apt-transport-https mesa-utils mc htop vlc curl ca-certificates gnome-tweaks samba smbclient p7zip-full ffmpeg gnome-shell-extension-ubuntu-dock ubuntu-drivers-common xz-utils bleachbit meld openvpn jq synaptic ubuntu-restricted-extras redis-tools lm-sensors gnome-shell-extension-manager gnome-shell-extensions smartmontools golang-go ipmitool build-essential gcc make perl cmake gnupg virtualbox-qt variety google-chrome-stable libssl-dev python3-pip python3-argcomplete pipx dconf-editor software-properties-common dupeguru djview4 foliate nmap pdfarranger nmap zenmap libnss3-tools strawberry xchm virtualbox-ext-pack virtualbox-guest-additions-iso virtualbox-guest-utils virtualbox-qt -y
 
 # java stub package
 # equivs-build fake-java-provider
