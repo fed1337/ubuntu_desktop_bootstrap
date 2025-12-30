@@ -57,7 +57,6 @@ rm -r JetBrainsMono-2.304/
 wget -qO- https://raw.githubusercontent.com/xvzc/SpoofDPI/main/install.sh | bash -s linux
 mkdir -p /home/$USER/.spoof-dpi/bin
 ln -s /usr/local/bin/spoofdpi /home/$USER/.spoof-dpi/bin/spoof-dpi
-rm install.sh
 
 # gcloud
 wget -qO- https://packages.cloud.google.com/apt/doc/apt-key.gpg | gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg
@@ -86,16 +85,15 @@ apt install ./nekoray-4.0.1-2024-12-12-debian-x64.deb -y
 install -m 0755 -d /etc/apt/keyrings
 wget -qO- https://download.docker.com/linux/ubuntu/gpg > /etc/apt/keyrings/docker.asc
 chmod a+r /etc/apt/keyrings/docker.asc
-echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu   noble stable" > /etc/apt/sources.list.d/docker.list
+echo "deb [arch=$ARCH signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu  $CODENAME stable" > /etc/apt/sources.list.d/docker.list
 apt update
-apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-ce-rootless-extras
+apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-ce-rootless-extras -y
 groupadd docker
 usermod -aG docker "$USER"
 
 # docker scout
-sudo -u "$USER" bash -c 'wget -qO- https://raw.githubusercontent.com/docker/scout-cli/main/install.sh'
-sudo -u "$USER" bash -c 'sh install.sh'
-sudo -u "$USER" bash -c 'rm install.sh'
+sudo -u "$USER" bash -c "mkdir /home/$USER/.docker"
+sudo -u "$USER" bash -c 'wget -qO- https://raw.githubusercontent.com/docker/scout-cli/main/install.sh | sh'
 
 # lens
 wget -qO- https://downloads.k8slens.dev/keys/gpg | gpg --dearmor | tee /usr/share/keyrings/lens-archive-keyring.gpg >/dev/null
