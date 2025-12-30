@@ -81,13 +81,6 @@ add-apt-repository ppa:ondrej/php
 apt update -y
 apt install php8.4-curl php8.4-intl php8.4-mbstring php8.4-mysql php8.4-xdebug php8.4-xml
 
-# nvm
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
-# TODO: automate installation of needed versions and choose default
-#  may be good idea to symlink to default tool path after some tools are installed
-#feds@hp:~$ which node >/dev/null && sudo ln -sf "$(which node)" /usr/local/bin/node
-#feds@hp:~$ which npx >/dev/null && sudo ln -sf "$(which npx)" /usr/local/bin/npx
-
 # ansible
 pipx install --include-deps ansible
 pipx inject --include-apps ansible argcomplete
