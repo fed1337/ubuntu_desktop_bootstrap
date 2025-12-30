@@ -11,12 +11,12 @@ EXTENSIONS=(
   "tilingshell@ferrarodomenico.com"
 )
 
-for ext in \${EXTENSIONS[@]}; do
-  gnome-extensions install \"\$ext\" || true
+for ext in "${EXTENSIONS[@]}"; do
+  gnome-extensions install "$ext" || true
 done
 
-for ext in \${EXTENSIONS[@]}; do
-  gnome-extensions enable \"\$ext\" || true
+for ext in "${EXTENSIONS[@]}"; do
+  gnome-extensions enable "$ext" || true
 done
 
 # don't remember & hide recent files

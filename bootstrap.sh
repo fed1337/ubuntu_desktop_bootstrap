@@ -107,6 +107,8 @@ apt-mark hold tracker-miner-fs
 apt autoclean
 apt autoremove -y
 rm -f ./*.deb
+rf -rf ./fonts
+rf -f ./*.txt
 
 # copy ssh keys
 cp -rp .ssh /home/$USER/.ssh

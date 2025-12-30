@@ -10,10 +10,10 @@
 ## After script execution
 
 1. Setup connection to GCP (`gcloud init` & `gcloud auth login`)
-2. Use Gnome setup script
-3. Use Composer installer and move the binary to /usr/local/bin/composer
+2. Use Java installer
+3. Use Composer installer
 4. Use Nodejs installer
-5. Use Java installer
+5. Use Gnome setup script
 6. Reboot
 7. Perform basic configuration via UI
 8. Move data from backup
@@ -32,6 +32,9 @@ Run it as user `./composer_installer.sh`
 ## NVM & nodejs installation
 
 Run it as user `./nodejs_installer.sh`
+
+## Gnome setup
+
 
 ## Virtual box
 If VMs can't run due to
