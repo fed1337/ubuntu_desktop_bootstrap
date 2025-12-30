@@ -36,10 +36,10 @@ apt install php8.4-curl php8.4-intl php8.4-mbstring php8.4-mysql php8.4-xdebug p
 wget -qO- https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh | bash
 apt update
 apt install symfony-cli -y
-sudo -u $USER bash -c 'symfony completion bash | sudo tee /etc/bash_completion.d/symfony'
+sudo -u "$USER" bash -c 'symfony completion bash | sudo tee /etc/bash_completion.d/symfony'
 
 # jetbrains toolbox
-sudo -u $USER bash -c 'wget -qO- https://raw.githubusercontent.com/nagygergo/jetbrains-toolbox-install/master/jetbrains-toolbox.sh | bash'
+sudo -u "$USER" bash -c 'wget -qO- https://raw.githubusercontent.com/nagygergo/jetbrains-toolbox-install/master/jetbrains-toolbox.sh | bash'
 
 # install peazip GUI archive manager
 wget https://github.com/peazip/PeaZip/releases/download/10.8.0/peazip_10.8.0.LINUX.GTK2-1_amd64.deb
@@ -88,25 +88,19 @@ apt update
 apt install lens -y
 
 # ansible
-pipx install --include-deps ansible
-pipx inject --include-apps ansible argcomplete
-pipx install ansible-lint
-sudo -u $USER -- activate-global-python-argcomplete --user
+sudo -u "$USER" bash -c 'pipx install --include-deps ansible'
+sudo -u "$USER" bash -c 'pipx inject --include-apps ansible argcomplete'
+sudo -u "$USER" bash -c 'pipx install ansible-lint'
+sudo -u "$USER" -- activate-global-python-argcomplete --user
 
 # disable tracker 3
-sudo -u $USER bash -c 'systemctl --user mask tracker-extract-3.service tracker-miner-fs-3.service tracker-miner-rss-3.service tracker-writeback-3.service tracker-xdg-portal-3.service tracker-miner-fs-control-3.service'
-sudo -u $USER bash -c 'tracker3 reset --filesystem --rss'
-sudo -u $USER bash -c 'tracker3 reset -s -r'
-'Hidden=true' >>/etc/xdg/autostart/tracker-miner-fs-3.desktop
-systemctl daemon-reload
+sudo -u "$USER" bash -c 'systemctl --user mask tracker-extract-3.service tracker-miner-fs-3.service tracker-miner-rss-3.service tracker-writeback-3.service tracker-xdg-portal-3.service tracker-miner-fs-control-3.service'
+sudo -u "$USER" bash -c 'tracker3 reset -s -r'
+sudo -u "$USER" bash -c 'systemctl daemon-reload'
 chmod -x /usr/libexec/tracker-*
 apt-mark hold tracker
 apt-mark hold tracker-extract
 apt-mark hold tracker-miner-fs
-
-# try to repair stuff that may be broken
-apt --fix-broken install -y
-apt update --fix-missing -y
 
 # crap cleaning
 apt autoclean
