@@ -122,3 +122,6 @@ cp .bash_aliases /home/$USER/
 chown $USER:$USER /home/$USER/.bash_aliases
 chmod 644 /home/$USER/.bash_aliases
 cp configs/sensors-custom.conf /etc/sensors.d/
+
+# don't remember & hide recent files
+gsettings set org.gnome.desktop.privacy remember-recent-files false
