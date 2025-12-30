@@ -36,10 +36,6 @@ apt install php8.4-curl php8.4-intl php8.4-mbstring php8.4-mysql php8.4-xdebug p
 wget -qO- https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh | bash
 apt update
 apt install symfony-cli -y
-sudo -u $USER 'symfony completion bash | sudo tee /etc/bash_completion.d/symfony'
-
-# jetbrains toolbox
-sudo -u $USER 'wget -qO- https://raw.githubusercontent.com/nagygergo/jetbrains-toolbox-install/master/jetbrains-toolbox.sh | bash'
 
 # install peazip GUI archive manager
 wget https://github.com/peazip/PeaZip/releases/download/10.8.0/peazip_10.8.0.LINUX.GTK2-1_amd64.deb
@@ -87,18 +83,7 @@ echo "deb [arch=amd64 signed-by=/usr/share/keyrings/lens-archive-keyring.gpg] ht
 apt update
 apt install lens -y
 
-# ansible
-pipx install --include-deps ansible
-pipx inject --include-apps ansible argcomplete
-pipx install ansible-lint
-sudo -u $USER -- activate-global-python-argcomplete --user
-
 # disable tracker 3
-sudo -u $USER 'systemctl --user mask tracker-extract-3.service tracker-miner-fs-3.service tracker-miner-rss-3.service tracker-writeback-3.service tracker-xdg-portal-3.service tracker-miner-fs-control-3.service'
-sudo -u $USER 'tracker3 reset --filesystem --rss'
-sudo -u $USER 'tracker3 reset -s -r'
-'Hidden=true' >>/etc/xdg/autostart/tracker-miner-fs-3.desktop
-systemctl daemon-reload
 chmod -x /usr/libexec/tracker-*
 apt-mark hold tracker
 apt-mark hold tracker-extract
@@ -125,6 +110,23 @@ cp .bash_aliases /home/$USER/
 chown $USER:$USER /home/$USER/.bash_aliases
 chmod 644 /home/$USER/.bash_aliases
 cp configs/sensors-custom.conf /etc/sensors.d/
+
+# user commands
+su - $USER
+# symfony autocompletion
+symfony completion bash | sudo tee /etc/bash_completion.d/symfony
+# jetbrains toolbox
+wget -qO- https://raw.githubusercontent.com/nagygergo/jetbrains-toolbox-install/master/jetbrains-toolbox.sh | bash
+# tracker
+systemctl --user mask tracker-extract-3.service tracker-miner-fs-3.service tracker-miner-rss-3.service tracker-writeback-3.service tracker-xdg-portal-3.service tracker-miner-fs-control-3.service
+tracker3 reset --filesystem --rss
+tracker3 reset -s -r
+systemctl daemon-reload
+# ansible
+pipx install --include-deps ansible
+pipx inject --include-apps ansible argcomplete
+pipx install ansible-lint
+activate-global-python-argcomplete --user
 
 echo -e "Ubuntu Desktop Bootstrap done
 IMPORTANT MANUAL STEPS:
