@@ -4,30 +4,32 @@ set -x
 USER=feds
 
 # updating system
-apt update -y
+apt update
 apt upgrade -y
 
 # installing snaps
-snap install discord insomnia minuet mumble postman qalculate slack telegram-desktop keepassxc smplayer
-snap install --classic sublime-merge
+snap install discord minuet mumble postman qalculate slack telegram-desktop keepassxc smplayer
 snap install --classic sublime-text
 snap install --classic kubectx
 snap install --classic kubectl
 
 # install a bunch of stuff
-# TODO: add lens here
-apt install libfuse2 git apt-transport-https mesa-utils mc htop vlc curl ca-certificates gnome-tweaks samba smbclient 7zip 7zip-rar 7zip-standalone ffmpeg gnome-shell-extension-ubuntu-dock ubuntu-drivers-common xz-utils bleachbit meld openvpn jq synaptic ubuntu-restricted-extras redis-tools lm-sensors gnome-shell-extension-manager gnome-shell-extensions smartmontools golang-go ipmitool build-essential gcc make perl cmake gnupg virtualbox-qt variety google-chrome-stable libssl-dev python3-pip python3-argcomplete pipx dconf-editor software-properties-common dupeguru djview4 foliate nmap pdfarranger nmap zenmap libnss3-tools pritunl-client-electron strawberry xchm -y
+apt install libfuse2 git apt-transport-https mesa-utils mc htop vlc curl ca-certificates gnome-tweaks samba smbclient p7zip-full ffmpeg gnome-shell-extension-ubuntu-dock ubuntu-drivers-common xz-utils bleachbit meld openvpn jq synaptic ubuntu-restricted-extras redis-tools lm-sensors gnome-shell-extension-manager gnome-shell-extensions smartmontools golang-go ipmitool build-essential gcc make perl cmake gnupg virtualbox-qt variety google-chrome-stable libssl-dev python3-pip python3-argcomplete pipx dconf-editor software-properties-common dupeguru djview4 foliate nmap pdfarranger nmap zenmap libnss3-tools strawberry xchm -y
+
+# java stub package
+# equivs-build fake-java-provider
+apt install ./fake-java-provider_1.0_all.deb
 
 # symfony-cli
 curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | bash
-apt update -y
+apt update
 apt install symfony-cli -y
 
 # jetbrains toolbox
 curl -fsSL https://raw.githubusercontent.com/nagygergo/jetbrains-toolbox-install/master/jetbrains-toolbox.sh | bash
 
 # install peazip GUI archive manager
-wget https://github.com/peazip/PeaZip/releases/download/10.3.0/peazip_10.3.0.LINUX.GTK2-1_amd64.deb
+wget https://github.com/peazip/PeaZip/releases/download/10.8.0/peazip_10.8.0.LINUX.GTK2-1_amd64.deb
 apt install ./peazip_10.3.0.LINUX.GTK2-1_amd64.deb
 
 # jetbrains mono font
@@ -53,29 +55,34 @@ wget https://github.com/UnnoTed/wireguird/releases/download/v1.1.0/wireguird_amd
 apt install ./wireguird_amd64.deb
 
 # kse
-wget https://github.com/kaikramer/keystore-explorer/releases/download/v5.5.3/kse_5.5.3_all.deb
-apt install ./kse_5.5.3_all.deb
-
-# typora
-wget -qO - https://typora.io/linux/public-key.asc | sudo tee /etc/apt/trusted.gpg.d/typora.asc
-add-apt-repository 'deb https://typora.io/linux ./'
-apt update
-apt install install typora
+wget https://github.com/kaikramer/keystore-explorer/releases/download/v5.6.0/kse_5.6.0_all.deb
+apt install ./kse_5.6.0_all.deb
 
 # zoom
-wget https://zoom.us/client/6.1.11.1545/zoom_amd64.deb
+wget https://zoom.us/client/latest/zoom_amd64.deb
 apt install ./zoom_amd64.deb
 
 # rustdesk
-wget https://github.com/rustdesk/rustdesk/releases/download/1.3.8/rustdesk-1.3.8-x86_64.deb
-apt install ./rustdesk-1.3.8-x86_64.deb
+wget https://github.com/rustdesk/rustdesk/releases/download/1.4.4/rustdesk-1.4.4-x86_64.deb
+apt install ./rustdesk-1.4.4-x86_64.deb
 
 # nekoray
 wget https://github.com/MatsuriDayo/nekoray/releases/download/4.0.1/nekoray-4.0.1-2024-12-12-debian-x64.deb
 apt install ./nekoray-4.0.1-2024-12-12-debian-x64.deb
 
+# lens
+curl -fsSL https://downloads.k8slens.dev/keys/gpg | gpg --dearmor | tee /usr/share/keyrings/lens-archive-keyring.gpg > /dev/null
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/lens-archive-keyring.gpg] https://downloads.k8slens.dev/apt/debian stable main" | tee /etc/apt/sources.list.d/lens.list > /dev/null
+apt update
+apt install lens
+
+# PHP 8.4 suitable for Symfony
+add-apt-repository ppa:ondrej/php
+apt update -y
+apt install php8.4-curl php8.4-intl php8.4-mbstring php8.4-mysql php8.4-xdebug php8.4-xml
+
 # nvm
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 # TODO: automate installation of needed versions and choose default
 #  may be good idea to symlink to default tool path after some tools are installed
 #feds@hp:~$ which node >/dev/null && sudo ln -sf "$(which node)" /usr/local/bin/node
@@ -98,23 +105,17 @@ apt-mark hold tracker
 apt-mark hold tracker-extract
 apt-mark hold tracker-miner-fs
 
-# PHP 8.4 suitable for Symfony
-add-apt-repository ppa:ondrej/php
-apt update -y
-apt install php8.4-curl php8.4-intl php8.4-mbstring php8.4-mysql php8.4-xdebug php8.4-xml
-
 # try to repair stuff that may be broken
 apt --fix-broken install -y
 apt update --fix-missing -y
 
 # crap cleaning
 apt remove gnome-text-editor
-apt clean
+apt autoclean
 apt autoremove
-rm -f *.deb
+rm -f ./*.deb
 
-# TODO: full gnome setup with extensions and configuration, delete not used programs
-
+# TODO: Gnome setup
 # don't remember & hide recent files
 gsettings set org.gnome.desktop.privacy remember-recent-files false
 
@@ -130,7 +131,6 @@ cp .bash_aliases /home/$USER/
 chown $USER:$USER /home/$USER/.bash_aliases
 chmod 644 /home/$USER/.bash_aliases
 cp configs/sensors-custom.conf /etc/sensors.d/
-#cp -rp configs/sublime-text /home/$USER/.config/
 
 echo -e "Ubuntu Desktop Bootstrap done
 IMPORTANT MANUAL STEPS:
