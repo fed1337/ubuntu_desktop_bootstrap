@@ -72,8 +72,8 @@ wget https://github.com/MatsuriDayo/nekoray/releases/download/4.0.1/nekoray-4.0.
 apt install ./nekoray-4.0.1-2024-12-12-debian-x64.deb
 
 # lens
-curl -fsSL https://downloads.k8slens.dev/keys/gpg | gpg --dearmor | tee /usr/share/keyrings/lens-archive-keyring.gpg > /dev/null
-echo "deb [arch=amd64 signed-by=/usr/share/keyrings/lens-archive-keyring.gpg] https://downloads.k8slens.dev/apt/debian stable main" | tee /etc/apt/sources.list.d/lens.list > /dev/null
+curl -fsSL https://downloads.k8slens.dev/keys/gpg | gpg --dearmor | tee /usr/share/keyrings/lens-archive-keyring.gpg >/dev/null
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/lens-archive-keyring.gpg] https://downloads.k8slens.dev/apt/debian stable main" | tee /etc/apt/sources.list.d/lens.list >/dev/null
 apt update
 apt install lens
 
@@ -109,10 +109,6 @@ apt autoclean
 apt autoremove
 rm -f ./*.deb
 
-# TODO: Gnome setup
-# don't remember & hide recent files
-gsettings set org.gnome.desktop.privacy remember-recent-files false
-
 # copy ssh keys
 cp -rp .ssh /home/$USER/.ssh
 chmod 0600 /home/$USER/.ssh/id*
@@ -133,4 +129,6 @@ IMPORTANT MANUAL STEPS:
 1.2 gcloud auth login
 2. Use Java installer
 3. Use Composer installer and move the binary to /usr/local/bin/composer
-4. Install docker using playbook"
+4. Use Nodejs installer
+5. Use virtualbox installer
+6. Install docker using playbook"
