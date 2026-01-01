@@ -113,9 +113,11 @@ apt update
 apt install code -y
 
 # uv
-sudo -u "$USER" bash -c wget -qO- https://astral.sh/uv/install.sh | sh
-sudo -u "$USER" bash -c echo 'eval "$(uv generate-shell-completion bash)"' | tee -a /home/$USER/.bashrc
-sudo -u "$USER" bash -c echo 'eval "$(uvx --generate-shell-completion bash)"' | tee -a /home/$USER/.bashrc
+su - "$USER" -c "
+wget -qO- https://astral.sh/uv/install.sh | sh
+echo 'eval \"\$(uv generate-shell-completion bash)\"' | tee -a /home/$USER/.bashrc
+echo 'eval \"\$(uvx --generate-shell-completion bash)\"' | tee -a /home/$USER/.bashrc
+"
 
 # ansible
 sudo -u "$USER" bash -c "pipx install --include-deps ansible"
