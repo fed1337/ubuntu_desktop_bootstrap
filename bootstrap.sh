@@ -120,9 +120,8 @@ echo 'eval \"\$(uvx --generate-shell-completion bash)\"' | tee -a /home/$USER/.b
 "
 
 # ansible
-sudo -u "$USER" bash -c "pipx install --include-deps ansible"
-sudo -u "$USER" bash -c "pipx inject --include-apps ansible argcomplete"
-sudo -u "$USER" bash -c "pipx install ansible-lint"
+sudo -u "$USER" bash -c "pipx install --include-deps ansible-dev-tools"
+sudo -u "$USER" bash -c "pipx inject --include-apps ansible-dev-tools argcomplete"
 sudo -u "$USER" -- activate-global-python-argcomplete --user
 sudo -u "$USER" bash -c "pipx ensurepath"
 
