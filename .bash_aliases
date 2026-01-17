@@ -10,6 +10,7 @@ alias fdisk="fdisk --color=always"
 alias pcregrep="pcregrep --color=always"
 alias watch="watch --color"
 alias diff="diff --color=always"
+alias dir="dir --color=auto"
 alias vdir="vdir --color=always"
 alias grep="grep --color=auto"
 alias ls="ls --color"
@@ -20,12 +21,8 @@ alias du="du -h"
 alias rsync="rsync -h"
 alias systemctl="systemctl --no-pager --full"
 
-# cd
-alias cd1="cd .."
-alias cd2="cd ../.."
-
 # package management
-alias update="sudo apt update && sudo apt upgrade"
+alias update="sudo snap refresh && sudo apt update && sudo apt upgrade"
 alias clean="sudo apt autoremove --purge && sudo apt autoclean"
 
 # docker
@@ -50,6 +47,7 @@ alias setproxy="http_proxy='http://127.0.0.1:2080' && export http_proxy"
 alias unsetproxy="http_proxy='' && export http_proxy"
 alias pscpu="ps auxf | sort -nr -k 3 | head -10"
 alias psmem="ps auxf | sort -nr -k 4 | head -10"
+alias src="source ~/.bashrc"
 
 # functions
 urlencode ()

@@ -1,0 +1,14 @@
+[user]
+	email = fedorwww@gmail.com
+	name = Fedor Sedov
+	signingkey = /home/feds/.ssh/id_ed25519.pub
+[init]
+	defaultBranch = master
+[gpg]
+	format = ssh
+
+[commit]
+	gpgsign = true
+
+[tag]
+	gpgsign = true
