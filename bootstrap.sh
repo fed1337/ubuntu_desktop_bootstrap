@@ -6,7 +6,7 @@ USER="feds"
 ARCH="$(dpkg --print-architecture)"
 CODENAME="$(lsb_release -sc)"
 
-updating system
+# updating system
 apt update
 apt upgrade -y
 snap refresh
@@ -146,19 +146,19 @@ cp -rp .ssh /home/$USER/.ssh
 chmod 0600 /home/$USER/.ssh/id*
 ssh-add
 
-# oh-my-bash
-sudo -u "$USER" bash -c "$(wget https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh -O -)"
+# TODO: full oh-my-bash setup
+# sudo -u "$USER" bash -c "$(wget https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh -O -)"
 
 # copy configs
 cp configs/variety.conf /home/$USER/.config/variety/
 cp configs/sensors-custom.conf /etc/sensors.d/
 cp .gitconfig /home/$USER/
 cp .bash_aliases /home/$USER/
-cp .bashrc /home/$USER/
+# cp .bashrc /home/$USER/
 chown $USER:$USER /home/$USER/.bash_aliases
 chmod 644 /home/$USER/.bash_aliases
-chown $USER:$USER /home/$USER/.bashrc
-chmod 644 /home/$USER/.bashrc
+# chown $USER:$USER /home/$USER/.bashrc
+# chmod 644 /home/$USER/.bashrc
 
 # don't remember & hide recent files
 gsettings set org.gnome.desktop.privacy remember-recent-files false
