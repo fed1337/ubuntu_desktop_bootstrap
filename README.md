@@ -13,17 +13,17 @@
 2. Use Java installer
 3. Use Composer installer
 4. Use Nodejs installer
-5. Use Gnome setup script
-6. Reboot
-7. Perform basic configuration via UI
-8. Move data from backup
-9. Perform sensors
-   configuration [readme1](https://github.com/UshakovVasilii/gnome-shell-extension-freon/wiki/FAQ) [readme2](https://wiki.archlinux.org/title/lm_sensors)
-10. check dmesg errors with `sudo dmesg --level=emerg,alert,crit,err,warn,notice,info`
+5. Reboot
+6. Perform basic configuration via UI
+7. Move data from backup
+8. Config sensors [readme1](https://github.com/UshakovVasilii/gnome-shell-extension-freon/wiki/FAQ) [readme2](https://wiki.archlinux.org/title/lm_sensors)
+9. check dmesg errors with `sudo dmesg --level=emerg,alert,crit,err,warn,notice,info`
 
 ## Java installation
 
 The script must be run as root. Run the script without options to see examples of usage.
+
+You must have folders with respecting unarchived JDKs next to the script file.
 
 ## Composer installation
 
