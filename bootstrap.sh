@@ -18,7 +18,7 @@ snap install --classic kubectl
 snap install --classic aws-cli
 
 # install a bunch of stuff
-apt install libfuse2 git apt-transport-https mesa-utils mc htop vlc curl ca-certificates gnome-tweaks smbclient p7zip-full ffmpeg gnome-shell-extension-ubuntu-dock ubuntu-drivers-common xz-utils bleachbit meld openvpn jq ubuntu-restricted-extras redis-tools lm-sensors gnome-shell-extension-manager gnome-shell-extensions ipmitool build-essential gcc make perl cmake gnupg variety libssl-dev python3-pip python3-argcomplete pipx dconf-editor software-properties-common dupeguru djview4 foliate pdfarranger nmap zenmap libnss3-tools strawberry xchm virtualbox virtualbox-ext-pack virtualbox-guest-additions-iso virtualbox-guest-utils -y
+apt install libfuse2 git apt-transport-https mesa-utils mc htop vlc curl ca-certificates gnome-tweaks smbclient p7zip-full ffmpeg gnome-shell-extension-ubuntu-dock ubuntu-drivers-common xz-utils bleachbit meld openvpn jq ubuntu-restricted-extras redis-tools lm-sensors gnome-shell-extension-manager gnome-shell-extensions ipmitool build-essential gcc make perl cmake gnupg variety libssl-dev python3-pip python3-argcomplete dconf-editor software-properties-common dupeguru djview4 foliate pdfarranger nmap zenmap libnss3-tools strawberry xchm virtualbox virtualbox-ext-pack virtualbox-guest-additions-iso virtualbox-guest-utils -y
 
 # java stub package
 # equivs-build fake-java-provider
@@ -31,7 +31,7 @@ apt install ./google-chrome-stable_current_"$ARCH".deb -y
 # PHP 8.4
 add-apt-repository ppa:ondrej/php
 apt update
-apt install php8.4-curl php8.4-intl php8.4-mbstring php8.4-mysql php8.4-xdebug php8.4-xml -y
+apt install php8.4 php8.4-{apcu,cli,common,curl,imagick,intl,mbstring,mysql,opcache,xdebug,xml} -y
 
 # symfony-cli
 wget -qO- https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh | bash
@@ -120,10 +120,10 @@ echo 'eval \"\$(uvx --generate-shell-completion bash)\"' | tee -a /home/$USER/.b
 "
 
 # ansible
-sudo -u "$USER" bash -c "pipx install --include-deps ansible-dev-tools"
-sudo -u "$USER" bash -c "pipx inject --include-apps ansible-dev-tools argcomplete"
-sudo -u "$USER" -- activate-global-python-argcomplete --user
-sudo -u "$USER" bash -c "pipx ensurepath"
+su - "$USER" -c "
+uv tool install ansible-core
+uv tool install ansible-lint
+"
 
 # disable tracker 3
 # run tracker3 reset -s -r -- to save some space if the system has been running for some time
