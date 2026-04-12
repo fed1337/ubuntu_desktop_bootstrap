@@ -1,3 +1,4 @@
+# shellcheck disable=SC2148
 # confirmation
 alias mv="mv -i"
 alias cp="cp -i"
