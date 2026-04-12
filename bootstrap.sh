@@ -7,12 +7,12 @@ ARCH="$(dpkg --print-architecture)"
 CODENAME="$(lsb_release -sc)"
 PLATFORM="$(uname -m)"
 
-# updating system
+# system update
 apt update
 apt upgrade -y
 snap refresh
 
-# installing snaps
+# install snaps
 snap install discord minuet mumble postman qalculate slack telegram-desktop keepassxc smplayer
 snap install --classic kubectx
 snap install --classic kubectl
@@ -135,6 +135,12 @@ fc-cache -fv &&
 grep -qxF '\''eval "$(starship init bash)"'\'' "$HOME/.bashrc" || echo '\''eval "$(starship init bash)"'\'' >> "$HOME/.bashrc"
 '
 sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes
+echo -n "bind 'set mark-directories on'
+bind 'set mark-symlinked-directories on'
+bind 'set show-all-if-ambiguous on'
+bind 'set menu-complete-display-prefix on'
+bind 'set completion-ignore-case on'
+bind 'set colored-stats on'" >> /home/$USER/.bashrc
 
 # disable tracker 3
 # run tracker3 reset -s -r -- to save some space if the system has been running for some time
