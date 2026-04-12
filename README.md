@@ -27,11 +27,11 @@ You must have folders with respecting unarchived JDKs next to the script file.
 
 ## Composer installation
 
-Run it as user `./composer_installer.sh`
+Run it as a user `./composer_installer.sh`
 
 ## NVM & nodejs installation
 
-Run it as user `./nodejs_installer.sh`
+Run it as a user `./nodejs_installer.sh <version>`
 
 ## Gnome setup
 

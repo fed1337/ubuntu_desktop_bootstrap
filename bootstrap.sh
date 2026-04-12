@@ -5,6 +5,7 @@ set -x
 USER="feds"
 ARCH="$(dpkg --print-architecture)"
 CODENAME="$(lsb_release -sc)"
+PLATFORM="$(uname -i)"
 
 # updating system
 apt update
@@ -18,7 +19,7 @@ snap install --classic kubectl
 snap install --classic aws-cli
 
 # install a bunch of stuff
-apt install libfuse2 git apt-transport-https mesa-utils mc htop vlc curl ca-certificates gnome-tweaks smbclient p7zip-full ffmpeg gnome-shell-extension-ubuntu-dock ubuntu-drivers-common xz-utils bleachbit meld openvpn jq ubuntu-restricted-extras redis-tools lm-sensors gnome-shell-extension-manager gnome-shell-extensions ipmitool build-essential gcc make perl cmake gnupg variety libssl-dev python3-pip python3-argcomplete dconf-editor software-properties-common dupeguru djview4 foliate pdfarranger nmap zenmap libnss3-tools strawberry xchm virtualbox virtualbox-ext-pack virtualbox-guest-additions-iso virtualbox-guest-utils -y
+apt install libfuse2 git apt-transport-https mesa-utils mc htop vlc curl ca-certificates gnome-tweaks p7zip-full ffmpeg gnome-shell-extension-ubuntu-dock ubuntu-drivers-common xz-utils bleachbit meld openvpn jq ubuntu-restricted-extras redis-tools lm-sensors gnome-shell-extension-manager gnome-shell-extensions ipmitool build-essential gcc make cmake gnupg variety libssl-dev python3-pip python3-argcomplete dconf-editor software-properties-common dupeguru djview4 foliate pdfarranger nmap zenmap libnss3-tools strawberry xchm virtualbox virtualbox-ext-pack virtualbox-guest-additions-iso virtualbox-guest-utils -y
 
 # java stub package
 # equivs-build fake-java-provider
@@ -43,7 +44,7 @@ sudo -u "$USER" bash -c 'symfony completion bash | sudo tee /etc/bash_completion
 sudo -u "$USER" bash -c 'wget -qO- https://raw.githubusercontent.com/nagygergo/jetbrains-toolbox-install/master/jetbrains-toolbox.sh | bash'
 
 # peazip
-wget https://github.com/peazip/PeaZip/releases/download/10.8.0/peazip_10.8.0.LINUX.GTK2-1_"$ARCH".deb
+wget https://github.com/peazip/PeaZip/releases/download/11.0.0/peazip_11.0.0.LINUX.GTK2-1_"$ARCH".deb
 apt install ./peazip_10.8.0.LINUX.GTK2-1_"$ARCH".deb -y
 
 # jetbrains mono font
@@ -55,9 +56,9 @@ rm -f JetBrainsMono-2.304.zip
 rm -r JetBrainsMono-2.304/
 
 # spoof-dpi
-wget -qO- https://raw.githubusercontent.com/xvzc/SpoofDPI/main/install.sh | bash -s linux
-mkdir -p /home/$USER/.spoof-dpi/bin
-ln -s /usr/local/bin/spoofdpi /home/$USER/.spoof-dpi/bin/spoof-dpi
+# wget -qO- https://raw.githubusercontent.com/xvzc/SpoofDPI/main/install.sh | bash -s linux
+# mkdir -p /home/$USER/.spoof-dpi/bin
+# ln -s /usr/local/bin/spoofdpi /home/$USER/.spoof-dpi/bin/spoof-dpi
 
 # docker
 install -m 0755 -d /etc/apt/keyrings
@@ -90,12 +91,12 @@ wget https://github.com/UnnoTed/wireguird/releases/download/v1.1.0/wireguird_"$A
 apt install ./wireguird_"$ARCH".deb -y
 
 # kse
-wget https://github.com/kaikramer/keystore-explorer/releases/download/v5.6.0/kse_5.6.0_all.deb
+wget https://github.com/kaikramer/keystore-explorer/releases/download/v5.6.1/kse_5.6.1_all.deb
 apt install ./kse_5.6.0_all.deb -y
 
 # rustdesk
-wget https://github.com/rustdesk/rustdesk/releases/download/1.4.4/rustdesk-1.4.4-x86_64.deb
-apt install ./rustdesk-1.4.4-x86_64.deb -y
+wget https://github.com/rustdesk/rustdesk/releases/download/1.4.6/rustdesk-1.4.6-"$PLATFORM".deb
+apt install ./rustdesk-1.4.4-"$PLATFORM".deb -y
 
 # nekoray
 wget https://github.com/MatsuriDayo/nekoray/releases/download/4.0.1/nekoray-4.0.1-2024-12-12-debian-x64.deb
