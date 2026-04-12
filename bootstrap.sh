@@ -123,25 +123,23 @@ uv tool install ansible-core
 uv tool install ansible-lint
 "
 
-# starship
+# starship (requires nerd-fonts)
 # shellcheck disable=SC2016
-su - "$USER" -c '
+sudo -u "$USER" bash -c '
 mkdir -p "$HOME/.local/share/fonts" &&
 cd "$HOME/.local/share/fonts" &&
 curl -fLO https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.tar.xz &&
 tar xf JetBrainsMono.tar.xz &&
 rm JetBrainsMono.tar.xz &&
 fc-cache -fv &&
-curl -sS https://starship.rs/install.sh | sh &&
-grep -qxF '\''eval "$(starship init bash)"'\'' "$HOME/.bashrc" || \
-echo '\''eval "$(starship init bash)"'\'' >> "$HOME/.bashrc"
+grep -qxF '\''eval "$(starship init bash)"'\'' "$HOME/.bashrc" || echo '\''eval "$(starship init bash)"'\'' >> "$HOME/.bashrc"
 '
+sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes
 
 # disable tracker 3
 # run tracker3 reset -s -r -- to save some space if the system has been running for some time
 sudo -u "$USER" bash -c "systemctl --user mask tracker-extract-3.service tracker-miner-fs-3.service tracker-miner-rss-3.service tracker-writeback-3.service tracker-xdg-portal-3.service tracker-miner-fs-control-3.service"
 sudo -u "$USER" bash -c "systemctl daemon-reload"
-chmod -x /usr/libexec/tracker-*
 apt-mark hold tracker
 apt-mark hold tracker-extract
 apt-mark hold tracker-miner-fs
