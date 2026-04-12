@@ -45,7 +45,7 @@ sudo -u "$USER" bash -c 'wget -qO- https://raw.githubusercontent.com/nagygergo/j
 
 # peazip
 wget https://github.com/peazip/PeaZip/releases/download/11.0.0/peazip_11.0.0.LINUX.GTK2-1_"$ARCH".deb
-apt install ./peazip_10.8.0.LINUX.GTK2-1_"$ARCH".deb -y
+apt install ./peazip_11.0.0.LINUX.GTK2-1_"$ARCH".deb -y
 
 # jetbrains mono font
 wget https://download.jetbrains.com/fonts/JetBrainsMono-2.304.zip
@@ -92,11 +92,11 @@ apt install ./wireguird_"$ARCH".deb -y
 
 # kse
 wget https://github.com/kaikramer/keystore-explorer/releases/download/v5.6.1/kse_5.6.1_all.deb
-apt install ./kse_5.6.0_all.deb -y
+apt install ./kse_5.6.1_all.deb -y
 
 # rustdesk
 wget https://github.com/rustdesk/rustdesk/releases/download/1.4.6/rustdesk-1.4.6-"$PLATFORM".deb
-apt install ./rustdesk-1.4.4-"$PLATFORM".deb -y
+apt install ./rustdesk-1.4.6-"$PLATFORM".deb -y
 
 # nekoray
 wget https://github.com/MatsuriDayo/nekoray/releases/download/4.0.1/nekoray-4.0.1-2024-12-12-debian-x64.deb
@@ -146,9 +146,6 @@ rm -f ./*.txt
 cp -rp .ssh /home/$USER/.ssh
 chmod 0600 /home/$USER/.ssh/id*
 ssh-add
-
-# TODO: full oh-my-bash setup
-# sudo -u "$USER" bash -c "$(wget https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh -O -)"
 
 # copy configs
 sudo -u "$USER" bash -c "mkdir -m 0644 /home/$USER/.config/variety"
