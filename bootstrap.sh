@@ -5,7 +5,7 @@ set -x
 USER="feds"
 ARCH="$(dpkg --print-architecture)"
 CODENAME="$(lsb_release -sc)"
-PLATFORM="$(uname -i)"
+PLATFORM="$(uname -m)"
 
 # updating system
 apt update
@@ -19,7 +19,7 @@ snap install --classic kubectl
 snap install --classic aws-cli
 
 # install a bunch of stuff
-apt install libfuse2 git apt-transport-https mesa-utils mc htop vlc curl ca-certificates gnome-tweaks p7zip-full ffmpeg gnome-shell-extension-ubuntu-dock ubuntu-drivers-common xz-utils bleachbit meld openvpn jq ubuntu-restricted-extras redis-tools lm-sensors gnome-shell-extension-manager gnome-shell-extensions ipmitool build-essential gcc make cmake gnupg variety libssl-dev python3-pip python3-argcomplete dconf-editor software-properties-common dupeguru djview4 foliate pdfarranger nmap zenmap libnss3-tools strawberry xchm virtualbox virtualbox-ext-pack virtualbox-guest-additions-iso virtualbox-guest-utils -y
+apt install libfuse2 git apt-transport-https mesa-utils mc htop vlc curl ca-certificates gnome-tweaks p7zip-full ffmpeg gnome-shell-extension-ubuntu-dock ubuntu-drivers-common xz-utils bleachbit meld openvpn jq ubuntu-restricted-extras redis-tools lm-sensors gnome-shell-extension-manager gnome-shell-extensions ipmitool build-essential gcc make cmake gnupg variety libssl-dev python3-pip python3-argcomplete dconf-editor software-properties-common dupeguru djview4 foliate pdfarranger nmap zenmap libnss3-tools strawberry xchm virtualbox virtualbox-ext-pack -y
 
 # java stub package
 # equivs-build fake-java-provider
@@ -136,8 +136,8 @@ apt-mark hold tracker-extract
 apt-mark hold tracker-miner-fs
 
 # crap cleaning
+apt autoremove --purge -y
 apt autoclean
-apt autoremove -y
 rm -f ./*.deb
 rm -rf ./fonts
 rm -f ./*.txt
@@ -151,15 +151,13 @@ ssh-add
 # sudo -u "$USER" bash -c "$(wget https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh -O -)"
 
 # copy configs
+sudo -u "$USER" bash -c "mkdir -m 0644 /home/$USER/.config/variety"
 cp configs/variety.conf /home/$USER/.config/variety/
 cp configs/sensors-custom.conf /etc/sensors.d/
 cp .gitconfig /home/$USER/
 cp .bash_aliases /home/$USER/
-# cp .bashrc /home/$USER/
-chown $USER:$USER /home/$USER/.bash_aliases
-chmod 644 /home/$USER/.bash_aliases
-# chown $USER:$USER /home/$USER/.bashrc
-# chmod 644 /home/$USER/.bashrc
+chown $USER:$USER /home/$USER/.*
+chmod 644 /home/$USER/.*
 
 # don't remember & hide recent files
 gsettings set org.gnome.desktop.privacy remember-recent-files false

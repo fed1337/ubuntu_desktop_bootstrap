@@ -1,6 +1,6 @@
 [user]
-	email = fedorwww@gmail.com
-	name = Fedor Sedov
+	email = 55900130+fed1337@users.noreply.github.com
+	name = Fedor S
 	signingkey = /home/feds/.ssh/id_ed25519.pub
 [init]
 	defaultBranch = master
