@@ -49,11 +49,8 @@ apt install ./peazip_11.0.0.LINUX.GTK2-1_"$ARCH".deb -y
 
 # jetbrains mono font
 wget https://download.jetbrains.com/fonts/JetBrainsMono-2.304.zip
-unzip JetBrainsMono-2.304.zip
-cp -rp JetBrainsMono-2.304/ /usr/share/fonts/JetBrainsMono
+unzip JetBrainsMono-2.304 -d /usr/share/fonts/JetBrainsMono
 fc-cache -f -v
-rm -f JetBrainsMono-2.304.zip
-rm -r JetBrainsMono-2.304/
 
 # spoof-dpi
 # wget -qO- https://raw.githubusercontent.com/xvzc/SpoofDPI/main/install.sh | bash -s linux
@@ -153,7 +150,7 @@ apt-mark hold tracker-miner-fs
 apt autoremove --purge -y
 apt autoclean
 rm -f ./*.deb
-rm -rf ./fonts
+rm -f ./*.zip
 rm -f ./*.txt
 
 # copy ssh keys
@@ -162,7 +159,7 @@ chmod 0600 /home/$USER/.ssh/id*
 ssh-add
 
 # copy configs
-sudo -u "$USER" bash -c "mkdir -m 0644 /home/$USER/.config/variety"
+sudo -u "$USER" bash -c "mkdir -m -0755 /home/$USER/.config/variety"
 cp configs/variety.conf /home/$USER/.config/variety/
 cp configs/sensors-custom.conf /etc/sensors.d/
 cp .gitconfig /home/$USER/
