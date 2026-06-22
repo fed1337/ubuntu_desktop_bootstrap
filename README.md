@@ -27,11 +27,11 @@ You must have folders with respecting unarchived JDKs next to the script file.
 
 ## Composer installation
 
-Run it as a user `./composer_installer.sh`
+Run it as a regular user `./composer_installer.sh`
 
 ## NVM & nodejs installation
 
-Run it as a user `./nodejs_installer.sh <version>`
+Run it as a regular user `./nodejs_installer.sh <version>`
 
 ## Gnome setup
 
@@ -55,3 +55,34 @@ Please disable the KVM kernel extension, recompile your kernel and reboot.
 ```
 
 Run `sudo modprobe -r kvm_intel`
+
+## Trick system in thinking you have a JRE without installing one from APT
+
+The trick is to create a tiny “dummy package” that announces: *yes, this system has a compatible Java runtime, you may stand down.* Ubuntu gives you a neat little tool for this called `equivs`.
+
+The interesting part is figuring out what capability your target package needs. `apt show <package>` will tell you the exact virtual package it’s demanding.
+
+The control file for `equivs` can be delightfully tiny. It might look like this:
+
+```
+Section: misc
+Priority: optional
+Standards-Version: 3.9.2
+Package: custom-java11-runtime
+Version: 1.0
+Architecture: all
+Provides: java11-runtime
+Description: Dummy package declaring a manually installed Java 11+ runtime
+ A placeholder allowing apt packages to depend on Java without pulling in OpenJDK.
+```
+
+Then run:
+
+```
+equivs-build control-file
+sudo apt install ./custom-java11-runtime_1.0_all.deb
+```
+
+Once installed, APT sees that your system “has” a `java11-runtime` and stops proposing its own. You continue using `update-alternatives` to manage the actual binaries, so your hand-installed JVM stays in full control.
+
+This little trick works because Ubuntu packages don’t care *which* JRE you use, only that something claims the capability. The dummy package becomes that declaration, leaving your own runtime free to shine in its polyglot glory.
