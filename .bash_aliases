@@ -3,6 +3,7 @@
 alias mv="mv -i"
 alias cp="cp -i"
 alias ln="ln -i"
+alias rm="rm -i"
 
 # colors
 alias ip="ip -c"
@@ -21,6 +22,7 @@ alias df="df -h"
 alias du="du -h"
 alias rsync="rsync -h"
 alias systemctl="systemctl --no-pager --full"
+alias journalctl="journalctl --no-pager"
 
 # navigation
 alias ..="cd .."
