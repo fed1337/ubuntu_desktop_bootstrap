@@ -44,8 +44,8 @@ sudo -u "$USER" bash -c 'symfony completion bash | sudo tee /etc/bash_completion
 sudo -u "$USER" bash -c 'wget -qO- https://raw.githubusercontent.com/nagygergo/jetbrains-toolbox-install/master/jetbrains-toolbox.sh | bash'
 
 # peazip
-wget https://github.com/peazip/PeaZip/releases/download/11.1.0/peazip_11.1.0.LINUX.GTK2-1_"$ARCH".deb
-apt install ./peazip_11.1.0.LINUX.GTK2-1_"$ARCH".deb -y
+wget https://github.com/peazip/PeaZip/releases/download/11.2.0/peazip_11.2.0.LINUX.GTK2-1_"$ARCH".deb
+apt install ./peazip_11.2.0.LINUX.GTK2-1_"$ARCH".deb -y
 
 # jetbrains mono font
 wget https://download.jetbrains.com/fonts/JetBrainsMono-2.304.zip

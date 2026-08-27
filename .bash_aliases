@@ -22,15 +22,47 @@ alias du="du -h"
 alias rsync="rsync -h"
 alias systemctl="systemctl --no-pager --full"
 
+# navigation
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
+
 # package management
 alias update="sudo snap refresh && sudo apt update && sudo apt upgrade"
 alias clean="sudo apt autoremove --purge && sudo apt autoclean"
 
 # docker
-alias dps="sudo docker ps"
-alias di="sudo docker image"
-alias dc="sudo docker container"
-alias dex="sudo docker exec -it"
+alias d="docker"
+alias dps="docker ps"
+alias di="docker image"
+alias dc="docker container"
+alias dv="docker volume"
+alias dex="docker exec -it"
+
+# docker compose
+alias dc="docker compose"
+alias dcu="docker compose up"
+alias dcud="docker compose up --detach"
+alias dcub="docker compose up --detach --build"
+alias dcd="docker compose down"
+alias dcdv="docker compose down --volumes"
+alias dcps="docker compose ps"
+alias dcl="docker compose logs"
+alias dclf="docker compose logs --follow --tail 200"
+alias dcb="docker compose build"
+alias dcpull="docker compose pull"
+alias dcconfig="docker compose config"
+alias dcrestart="docker compose restart"
+
+# ansible
+alias av="ansible --version"
+alias ai="ansible-inventory"
+alias aigr="ansible-inventory --graph"
+alias ap="ansible-playbook"
+alias apcheck="ansible-playbook --check --diff"
+alias alint="ansible-lint"
 
 # useful
 alias ll="ls -alh"
@@ -51,14 +83,6 @@ alias psmem="ps auxf | sort -nr -k 4 | head -10"
 alias src="source ~/.bashrc"
 
 # functions
-urlencode ()
-{
-  local args="$@"
-  jq -nr --arg v "$args" '$v|@uri';
-}
+alias urlencode='python3 -c "import sys,urllib.parse; print(urllib.parse.quote(sys.stdin.read().strip()))"'
 
-urldecode ()
-{
-  local url_encoded="${1//+/ }"
-  printf '%b' "${url_encoded//%/\\x}"
-}
+alias urldecode='python3 -c "import sys,urllib.parse; print(urllib.parse.unquote(sys.stdin.read().strip()))"'
