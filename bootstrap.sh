@@ -147,13 +147,16 @@ bind 'set menu-complete-display-prefix on'
 bind 'set completion-ignore-case on'
 bind 'set colored-stats on'" | tee -a /home/$USER/.bashrc
 
+# golangci-lint
+sudo -u "$USER" bash -c 'curl -sSfL https://golangci-lint.run/install.sh | sh -s -- -b $(go env GOPATH)/bin v2.14.0'
+
 # disable tracker 3
 # run tracker3 reset -s -r -- to save some space if the system has been running for some time
-sudo -u "$USER" bash -c "systemctl --user mask tracker-extract-3.service tracker-miner-fs-3.service tracker-miner-rss-3.service tracker-writeback-3.service tracker-xdg-portal-3.service tracker-miner-fs-control-3.service"
-sudo -u "$USER" bash -c "systemctl daemon-reload"
-apt-mark hold tracker
-apt-mark hold tracker-extract
-apt-mark hold tracker-miner-fs
+# sudo -u "$USER" bash -c "systemctl --user mask tracker-extract-3.service tracker-miner-fs-3.service tracker-miner-rss-3.service tracker-writeback-3.service tracker-xdg-portal-3.service tracker-miner-fs-control-3.service"
+# sudo -u "$USER" bash -c "systemctl daemon-reload"
+# apt-mark hold tracker
+# apt-mark hold tracker-extract
+# apt-mark hold tracker-miner-fs
 
 # crap cleaning
 apt autoremove --purge -y
