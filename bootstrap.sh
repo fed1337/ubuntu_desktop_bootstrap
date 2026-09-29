@@ -109,12 +109,18 @@ apt update
 apt install code -y
 
 # uv
-su - "$USER" -c "
-wget -qO- https://astral.sh/uv/install.sh | sh
-echo -n \"export PATH=\"$HOME/.local/bin:$PATH\"
-eval \"\$(uv generate-shell-completion bash)\"
-eval \"\$(uvx --generate-shell-completion bash)\"\" | tee -a /home/$USER/.bashrc
-"
+sudo -u "$USER" bash -c '
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+grep -qxF '\''export PATH="$HOME/.local/bin:$PATH"'\'' "$HOME/.bashrc" ||
+    echo '\''export PATH="$HOME/.local/bin:$PATH"'\'' >> "$HOME/.bashrc"
+
+grep -qxF '\''eval "$(uv generate-shell-completion bash)"'\'' "$HOME/.bashrc" ||
+    echo '\''eval "$(uv generate-shell-completion bash)"'\'' >> "$HOME/.bashrc"
+
+grep -qxF '\''eval "$(uvx --generate-shell-completion bash)"'\'' "$HOME/.bashrc" ||
+    echo '\''eval "$(uvx --generate-shell-completion bash)"'\'' >> "$HOME/.bashrc"
+'
 
 # ansible
 su - "$USER" -c "
