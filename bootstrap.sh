@@ -133,7 +133,6 @@ fc-cache -fv &&
 grep -qxF '\''eval "$(starship init bash)"'\'' "$HOME/.bashrc" || echo '\''eval "$(starship init bash)"'\'' >> "$HOME/.bashrc"
 '
 sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes
-eval "$(starship init bash)"
 echo -n "bind 'set mark-directories on'
 bind 'set mark-symlinked-directories on'
 bind 'set show-all-if-ambiguous on'
