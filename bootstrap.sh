@@ -30,9 +30,7 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_"$ARCH".deb
 apt install ./google-chrome-stable_current_"$ARCH".deb -y
 
 # PHP 8.4
-add-apt-repository ppa:ondrej/php
-apt update
-apt install php8.4 php8.4-{apcu,cli,common,curl,imagick,intl,mbstring,mysql,opcache,xdebug,xml} -y
+apt install php8.5 php8.5-{apcu,cli,common,curl,imagick,intl,mbstring,mysql,opcache,xdebug,xml} -y
 
 # symfony-cli
 wget -qO- https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh | bash
@@ -135,6 +133,7 @@ fc-cache -fv &&
 grep -qxF '\''eval "$(starship init bash)"'\'' "$HOME/.bashrc" || echo '\''eval "$(starship init bash)"'\'' >> "$HOME/.bashrc"
 '
 sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes
+eval "$(starship init bash)"
 echo -n "bind 'set mark-directories on'
 bind 'set mark-symlinked-directories on'
 bind 'set show-all-if-ambiguous on'
