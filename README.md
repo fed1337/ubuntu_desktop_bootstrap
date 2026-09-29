@@ -64,7 +64,7 @@ The interesting part is figuring out what capability your target package needs. 
 
 The control file for `equivs` can be delightfully tiny. It might look like this:
 
-```
+```text
 Section: misc
 Priority: optional
 Standards-Version: 3.9.2
@@ -78,7 +78,7 @@ Description: Dummy package declaring a manually installed Java 11+ runtime
 
 Then run:
 
-```
+```shell
 equivs-build control-file
 sudo apt install ./custom-java11-runtime_1.0_all.deb
 ```

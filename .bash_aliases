@@ -44,7 +44,6 @@ alias dv="docker volume"
 alias dex="docker exec -it"
 
 # docker compose
-alias dc="docker compose"
 alias dcu="docker compose up"
 alias dcud="docker compose up --detach"
 alias dcub="docker compose up --detach --build"
