@@ -2,10 +2,16 @@
 
 ## After OS installation
 
-1. Download, extract, make script executable `chmod +x ubuntu_desktop_bootstrap-master/bootstrap.sh`
-2. Add .ssh directory with your keys to the ubuntu_desktop_bootstrap directory
-3. Edit the USER variable in bootstrap.sh accordingly to the name of your user
-4. Run the script as root `sudo ./bootstrap.sh`
+```shell
+wget https://github.com/fed1337/ubuntu_desktop_bootstrap/archive/refs/heads/master.zip
+unzip master.zip
+cd master/ubuntu_desktop_bootstrap-master
+chmod +x *.sh
+```
+
+- Add .ssh directory with your keys to the ubuntu_desktop_bootstrap directory
+- Edit the USER variable in bootstrap.sh accordingly to the name of your user
+- Run the main script as root `sudo ./bootstrap.sh`
 
 ## After script execution
 

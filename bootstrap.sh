@@ -29,8 +29,8 @@ apt install ./fake-java-provider_1.0_all.deb -y
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_"$ARCH".deb
 apt install ./google-chrome-stable_current_"$ARCH".deb -y
 
-# PHP 8.4
-apt install php8.5 php8.5-{apcu,cli,common,curl,imagick,intl,mbstring,mysql,opcache,xdebug,xml} -y
+# PHP
+apt install php8.5 php8.5-{apcu,cli,common,curl,imagick,intl,mbstring,mysql,xdebug,xml} -y
 
 # symfony-cli
 wget -qO- https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh | bash
@@ -111,6 +111,7 @@ apt install code -y
 # uv
 su - "$USER" -c "
 wget -qO- https://astral.sh/uv/install.sh | sh
+echo 'export PATH=\"$HOME/.local/bin:$PATH\" | tee -a /home/$USER/.bashrc
 echo 'eval \"\$(uv generate-shell-completion bash)\"' | tee -a /home/$USER/.bashrc
 echo 'eval \"\$(uvx --generate-shell-completion bash)\"' | tee -a /home/$USER/.bashrc
 "
