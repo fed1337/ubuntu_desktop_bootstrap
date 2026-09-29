@@ -42,8 +42,8 @@ sudo -u "$USER" bash -c 'symfony completion bash | sudo tee /etc/bash_completion
 sudo -u "$USER" bash -c 'wget -qO- https://raw.githubusercontent.com/nagygergo/jetbrains-toolbox-install/master/jetbrains-toolbox.sh | bash'
 
 # peazip
-wget https://github.com/peazip/PeaZip/releases/download/11.2.0/peazip_11.2.0.LINUX.GTK2-1_"$ARCH".deb
-apt install ./peazip_11.2.0.LINUX.GTK2-1_"$ARCH".deb -y
+wget https://github.com/peazip/PeaZip/releases/download/11.3.0/peazip_11.3.0.LINUX.GTK2-1_"$ARCH".deb
+apt install ./peazip_11.3.0.LINUX.GTK2-1_"$ARCH".deb -y
 
 # jetbrains mono font
 wget https://download.jetbrains.com/fonts/JetBrainsMono-2.304.zip
@@ -86,12 +86,12 @@ wget https://github.com/UnnoTed/wireguird/releases/download/v1.1.0/wireguird_"$A
 apt install ./wireguird_"$ARCH".deb -y
 
 # kse
-wget https://github.com/kaikramer/keystore-explorer/releases/download/v5.6.1/kse_5.6.1_all.deb
-apt install ./kse_5.6.1_all.deb -y
+wget https://github.com/kaikramer/keystore-explorer/releases/download/v5.7.0/kse_5.7.0_all.deb
+apt install ./kse_5.7.0_all.deb -y
 
 # rustdesk
-wget https://github.com/rustdesk/rustdesk/releases/download/1.4.6/rustdesk-1.4.8-"$PLATFORM".deb
-apt install ./rustdesk-1.4.8-"$PLATFORM".deb -y
+wget https://github.com/rustdesk/rustdesk/releases/download/1.4.9/rustdesk-1.4.9-"$PLATFORM".deb
+apt install ./rustdesk-1.4.9-"$PLATFORM".deb -y
 
 # nekoray
 wget https://github.com/MatsuriDayo/nekoray/releases/download/4.0.1/nekoray-4.0.1-2024-12-12-debian-x64.deb
@@ -111,9 +111,9 @@ apt install code -y
 # uv
 su - "$USER" -c "
 wget -qO- https://astral.sh/uv/install.sh | sh
-echo 'export PATH=\"$HOME/.local/bin:$PATH\" | tee -a /home/$USER/.bashrc
-echo 'eval \"\$(uv generate-shell-completion bash)\"' | tee -a /home/$USER/.bashrc
-echo 'eval \"\$(uvx --generate-shell-completion bash)\"' | tee -a /home/$USER/.bashrc
+echo -n \"export PATH=\"$HOME/.local/bin:$PATH\"
+eval \"\$(uv generate-shell-completion bash)\"
+eval \"\$(uvx --generate-shell-completion bash)\"\" | tee -a /home/$USER/.bashrc
 "
 
 # ansible
@@ -139,7 +139,7 @@ bind 'set mark-symlinked-directories on'
 bind 'set show-all-if-ambiguous on'
 bind 'set menu-complete-display-prefix on'
 bind 'set completion-ignore-case on'
-bind 'set colored-stats on'" >> /home/$USER/.bashrc
+bind 'set colored-stats on'" | tee -a /home/$USER/.bashrc
 
 # disable tracker 3
 # run tracker3 reset -s -r -- to save some space if the system has been running for some time

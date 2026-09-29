@@ -5,7 +5,7 @@
 ```shell
 wget https://github.com/fed1337/ubuntu_desktop_bootstrap/archive/refs/heads/master.zip
 unzip master.zip
-cd master/ubuntu_desktop_bootstrap-master
+cd ubuntu_desktop_bootstrap-master/
 chmod +x *.sh
 ```
 
