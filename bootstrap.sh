@@ -19,7 +19,7 @@ snap install --classic kubectl
 snap install --classic aws-cli
 
 # install a bunch of stuff
-apt install libfuse2 git apt-transport-https mesa-utils mc htop vlc curl ca-certificates gnome-tweaks p7zip-full ffmpeg gnome-shell-extension-ubuntu-dock ubuntu-drivers-common xz-utils bleachbit meld openvpn jq ubuntu-restricted-extras redis-tools lm-sensors gnome-shell-extension-manager gnome-shell-extensions ipmitool build-essential gcc make cmake gnupg variety libssl-dev python3-pip python3-argcomplete dconf-editor software-properties-common dupeguru djview4 foliate pdfarranger nmap zenmap libnss3-tools strawberry xchm virtualbox virtualbox-ext-pack -y
+apt install libfuse2 git apt-transport-https mesa-utils mc htop vlc curl ca-certificates gnome-tweaks p7zip-full ffmpeg gnome-shell-extension-ubuntu-dock ubuntu-drivers-common xz-utils bleachbit meld openvpn jq ubuntu-restricted-extras redis-tools lm-sensors gnome-shell-extension-manager gnome-shell-extensions ipmitool build-essential gcc make cmake gnupg variety libssl-dev python3-pip python3-argcomplete dconf-editor software-properties-common dupeguru djview4 foliate pdfarranger nmap zenmap libnss3-tools strawberry xchm virtualbox virtualbox-ext-pack shellcheck -y
 
 # java stub package
 apt install ./fake-java-provider_1.1_all.deb -y
@@ -142,6 +142,11 @@ bind 'set show-all-if-ambiguous on'
 bind 'set menu-complete-display-prefix on'
 bind 'set completion-ignore-case on'
 bind 'set colored-stats on'" | tee -a /home/$USER/.bashrc
+
+# shfmt
+wget https://github.com/patrickvane/shfmt/releases/download/master/shfmt_linux_amd64
+chmod +x shfmt_linux_amd64
+mv ./shfmt_linux_amd64 /usr/local/bin/shfmt
 
 # golangci-lint
 sudo -u "$USER" bash -c 'curl -sSfL https://golangci-lint.run/install.sh | sh -s -- -b $(go env GOPATH)/bin v2.14.0'
