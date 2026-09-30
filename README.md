@@ -1,4 +1,4 @@
-# Ubuntu 24.04 after installation bootstrap
+# Ubuntu 26.04 after installation bootstrap
 
 ## After OS installation
 

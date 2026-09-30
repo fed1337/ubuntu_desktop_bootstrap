@@ -22,7 +22,6 @@ snap install --classic aws-cli
 apt install libfuse2 git apt-transport-https mesa-utils mc htop vlc curl ca-certificates gnome-tweaks p7zip-full ffmpeg gnome-shell-extension-ubuntu-dock ubuntu-drivers-common xz-utils bleachbit meld openvpn jq ubuntu-restricted-extras redis-tools lm-sensors gnome-shell-extension-manager gnome-shell-extensions ipmitool build-essential gcc make cmake gnupg variety libssl-dev python3-pip python3-argcomplete dconf-editor software-properties-common dupeguru djview4 foliate pdfarranger nmap zenmap libnss3-tools strawberry xchm virtualbox virtualbox-ext-pack -y
 
 # java stub package
-# equivs-build fake-java-provider
 apt install ./fake-java-provider_1.1_all.deb -y
 
 # chrome
@@ -49,11 +48,6 @@ apt install ./peazip_11.3.0.LINUX.GTK2-1_"$ARCH".deb -y
 wget https://download.jetbrains.com/fonts/JetBrainsMono-2.304.zip
 unzip JetBrainsMono-2.304 -d /usr/share/fonts/JetBrainsMono
 fc-cache -f -v
-
-# spoof-dpi
-# wget -qO- https://raw.githubusercontent.com/xvzc/SpoofDPI/main/install.sh | bash -s linux
-# mkdir -p /home/$USER/.spoof-dpi/bin
-# ln -s /usr/local/bin/spoofdpi /home/$USER/.spoof-dpi/bin/spoof-dpi
 
 # docker
 install -m 0755 -d /etc/apt/keyrings
@@ -116,13 +110,10 @@ apt install ./ripgrep_15.2.0-1_"$ARCH".deb -y
 # uv
 sudo -u "$USER" bash -c '
 curl -LsSf https://astral.sh/uv/install.sh | sh
-
 grep -qxF '\''export PATH="$HOME/.local/bin:$PATH"'\'' "$HOME/.bashrc" ||
     echo '\''export PATH="$HOME/.local/bin:$PATH"'\'' >> "$HOME/.bashrc"
-
 grep -qxF '\''eval "$(uv generate-shell-completion bash)"'\'' "$HOME/.bashrc" ||
     echo '\''eval "$(uv generate-shell-completion bash)"'\'' >> "$HOME/.bashrc"
-
 grep -qxF '\''eval "$(uvx --generate-shell-completion bash)"'\'' "$HOME/.bashrc" ||
     echo '\''eval "$(uvx --generate-shell-completion bash)"'\'' >> "$HOME/.bashrc"
 '
@@ -154,14 +145,6 @@ bind 'set colored-stats on'" | tee -a /home/$USER/.bashrc
 
 # golangci-lint
 sudo -u "$USER" bash -c 'curl -sSfL https://golangci-lint.run/install.sh | sh -s -- -b $(go env GOPATH)/bin v2.14.0'
-
-# disable tracker 3
-# run tracker3 reset -s -r -- to save some space if the system has been running for some time
-# sudo -u "$USER" bash -c "systemctl --user mask tracker-extract-3.service tracker-miner-fs-3.service tracker-miner-rss-3.service tracker-writeback-3.service tracker-xdg-portal-3.service tracker-miner-fs-control-3.service"
-# sudo -u "$USER" bash -c "systemctl daemon-reload"
-# apt-mark hold tracker
-# apt-mark hold tracker-extract
-# apt-mark hold tracker-miner-fs
 
 # crap cleaning
 apt autoremove --purge -y
