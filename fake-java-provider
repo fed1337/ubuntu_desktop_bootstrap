@@ -2,8 +2,8 @@ Section: misc
 Priority: optional
 Standards-Version: 3.9.2
 Package: fake-java-provider
-Version: 1.0
+Version: 1.1
 Architecture: all
-Provides: default-jre, default-jre-headless, openjdk-21-jre, openjdk-21-jre-headless
-Description: Dummy package declaring a manually installed Java 11+ runtime
+Provides: default-jre (= 2:1.17), default-jre-headless, java25-runtime, java21-runtime, java17-runtime
+Description: Dummy package declaring a manually installed Java runtime
  A placeholder allowing apt packages to depend on Java without pulling in OpenJDK.

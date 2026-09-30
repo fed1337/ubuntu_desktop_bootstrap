@@ -23,7 +23,7 @@ apt install libfuse2 git apt-transport-https mesa-utils mc htop vlc curl ca-cert
 
 # java stub package
 # equivs-build fake-java-provider
-apt install ./fake-java-provider_1.0_all.deb -y
+apt install ./fake-java-provider_1.1_all.deb -y
 
 # chrome
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_"$ARCH".deb
@@ -86,8 +86,8 @@ wget https://github.com/UnnoTed/wireguird/releases/download/v1.1.0/wireguird_"$A
 apt install ./wireguird_"$ARCH".deb -y
 
 # kse
-wget https://github.com/kaikramer/keystore-explorer/releases/download/v5.7.0/kse_5.7.0_all.deb
-apt install ./kse_5.7.0_all.deb -y
+wget https://github.com/kaikramer/keystore-explorer/releases/download/v5.7.0/kse_5.7.0-1_all.deb
+apt install ./kse_5.7.0-1_all.deb -y
 
 # rustdesk
 wget https://github.com/rustdesk/rustdesk/releases/download/1.4.9/rustdesk-1.4.9-"$PLATFORM".deb
@@ -107,6 +107,11 @@ Architectures: amd64,arm64,armhf
 Signed-By: /etc/apt/keyrings/microsoft.gpg" > /etc/apt/sources.list.d/vscode.sources
 apt update
 apt install code -y
+
+# ripgrep
+wget https://github.com/BurntSushi/ripgrep/releases/download/15.2.0/ripgrep_15.2.0-1_"$ARCH".deb
+apt install ./ripgrep_15.2.0-1_"$ARCH".deb -y
+
 
 # uv
 sudo -u "$USER" bash -c '
@@ -166,7 +171,7 @@ rm -f ./*.zip
 rm -f ./*.txt
 
 # copy ssh keys
-cp -rp .ssh /home/$USER/.ssh
+cp -rp .ssh/* /home/$USER/.ssh/
 chmod 0600 /home/$USER/.ssh/id*
 ssh-add
 
