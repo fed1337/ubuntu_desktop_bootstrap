@@ -172,6 +172,3 @@ cp .gitconfig /home/$USER/
 cp .bash_aliases /home/$USER/
 chown $USER:$USER /home/$USER/{.gitconfig,.bash_aliases}
 chmod 0644 /home/$USER/{.gitconfig,.bash_aliases}'
-
-# don't remember & hide recent files
-gsettings set org.gnome.desktop.privacy remember-recent-files false
