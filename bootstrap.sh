@@ -170,5 +170,6 @@ mkdir -m -0755 /home/$USER/.config/variety
 cp configs/variety.conf /home/$USER/.config/variety/
 cp .gitconfig /home/$USER/
 cp .bash_aliases /home/$USER/
+cp configs/starship.toml /home/$USER/.config/
 chown $USER:$USER /home/$USER/{.gitconfig,.bash_aliases}
 chmod 0644 /home/$USER/{.gitconfig,.bash_aliases}'
