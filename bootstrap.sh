@@ -41,8 +41,8 @@ sudo -u "$USER" bash -c 'symfony completion bash | sudo tee /etc/bash_completion
 sudo -u "$USER" bash -c 'wget -qO- https://raw.githubusercontent.com/nagygergo/jetbrains-toolbox-install/master/jetbrains-toolbox.sh | bash'
 
 # peazip
-wget https://github.com/peazip/PeaZip/releases/download/11.3.0/peazip_11.3.0.LINUX.GTK2-1_"$ARCH".deb
-apt install ./peazip_11.3.0.LINUX.GTK2-1_"$ARCH".deb -y
+wget https://github.com/peazip/PeaZip/releases/download/11.4.0/peazip_11.4.0.LINUX.Qt6-1_"$ARCH".deb
+apt install ./peazip_11.4.0.LINUX.Qt6-1_"$ARCH".deb -y
 
 # jetbrains mono font
 wget https://download.jetbrains.com/fonts/JetBrainsMono-2.304.zip
@@ -106,7 +106,6 @@ apt install code -y
 wget https://github.com/BurntSushi/ripgrep/releases/download/15.2.0/ripgrep_15.2.0-1_"$ARCH".deb
 apt install ./ripgrep_15.2.0-1_"$ARCH".deb -y
 
-
 # uv
 sudo -u "$USER" bash -c '
 curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -143,10 +142,23 @@ bind 'set menu-complete-display-prefix on'
 bind 'set completion-ignore-case on'
 bind 'set colored-stats on'" | tee -a /home/$USER/.bashrc
 
+# hadolint
+wget https://github.com/hadolint/hadolint/releases/download/v2.15.1/hadolint-linux-x86_64
+chmod +x hadolint-linux-x86_64
+mv ./hadolint-linux-x86_64 /usr/local/bin/hadolint
+
 # shfmt
 wget https://github.com/patrickvane/shfmt/releases/download/master/shfmt_linux_amd64
 chmod +x shfmt_linux_amd64
 mv ./shfmt_linux_amd64 /usr/local/bin/shfmt
+
+# golang
+wget https://go.dev/dl/go1.27.3.linux-amd64.tar.gz
+tar -C /usr/local -xzf go1.27.3.linux-amd64.tar.gz
+PROFILE="/home/$USER/.profile"
+grep -qF '/usr/local/go/bin' "$PROFILE" 2>/dev/null || echo 'export PATH="/usr/local/go/bin:$HOME/go/bin:$PATH"' >> "$PROFILE"
+mkdir -p "$USER_HOME/go/bin"
+chown -R "$USER:$USER" "$USER_HOME/go"
 
 # golangci-lint
 sudo -u "$USER" bash -c 'curl -sSfL https://golangci-lint.run/install.sh | sh -s -- -b $(go env GOPATH)/bin v2.14.0'
