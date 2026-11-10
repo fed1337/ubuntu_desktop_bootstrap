@@ -123,6 +123,11 @@ uv tool install ansible-core
 uv tool install ansible-lint
 "
 
+# yamllint
+su - "$USER" -c "
+uv tool install yamllint
+"
+
 # starship (requires nerd-fonts)
 # shellcheck disable=SC2016
 sudo -u "$USER" bash -c '
